@@ -24,9 +24,11 @@
       - Images/officers/drake-macias.jpg
       - Images/elements/hero-left-circuits.svg
       - Images/elements/waves.png
+      - Images/elements/hex-grad-15.png
 
       Use forward slashes in paths:
       Correct: Images/elements/waves.png
+      Correct: Images/elements/hex-grad-15.png
       Incorrect: \Images\elements\waves.png
     -->
 
@@ -695,11 +697,43 @@
 
         /* =========================================================
            EVENTS / PROJECTS / LEADERSHIP SECTION
+           Waves moved here behind Explore the Club
         ========================================================= */
 
         #events {
-            background: linear-gradient(180deg, #eef5fb 0%, #f7f9fc 45%, #ffffff 100%);
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+            background: linear-gradient(180deg, rgba(238,245,251,.96) 0%, rgba(247,249,252,.94) 45%, rgba(255,255,255,.98) 100%);
         }
+
+            #events::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                z-index: -2;
+                pointer-events: none;
+                background-image: url("Images/elements/waves.png");
+                background-repeat: no-repeat;
+                background-position: center top;
+                background-size: cover;
+                opacity: .18;
+                mix-blend-mode: multiply;
+            }
+
+            #events::after {
+                content: '';
+                position: absolute;
+                inset: 0;
+                z-index: -1;
+                pointer-events: none;
+                background: radial-gradient(circle at 12% 10%, rgba(248,189,34,.16), transparent 28%), radial-gradient(circle at 90% 18%, rgba(0,55,103,.14), transparent 30%), linear-gradient(180deg, rgba(255,255,255,.42), rgba(255,255,255,.78));
+            }
+
+            #events .container {
+                position: relative;
+                z-index: 1;
+            }
 
         .event-list {
             display: grid;
@@ -855,6 +889,7 @@
 
         /* =========================================================
            SHARED JOIN + FOOTER BACKGROUND
+           Hex pattern starts from bottom and stretches upward
         ========================================================= */
 
         .cta-footer-wrap {
@@ -868,15 +903,30 @@
             .cta-footer-wrap::before {
                 content: '';
                 position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                top: auto;
+                height: 100%;
+                z-index: 0;
+                pointer-events: none;
+                background-image: url("Images/elements/hex-grad-15.png");
+                background-repeat: repeat-x;
+                background-position: center bottom;
+                background-size: auto 420px;
+                opacity: .34;
+                mix-blend-mode: screen;
+                transform: scaleY(-1);
+                transform-origin: center bottom;
+            }
+
+            .cta-footer-wrap::after {
+                content: '';
+                position: absolute;
                 inset: 0;
                 z-index: 0;
                 pointer-events: none;
-                background-image: url("Images/elements/waves.png");
-                background-repeat: no-repeat;
-                background-position: center center;
-                background-size: cover;
-                opacity: .14;
-                mix-blend-mode: screen;
+                background: radial-gradient(circle at 18% 20%, rgba(248,189,34,.13), transparent 30%), linear-gradient(180deg, rgba(3,23,47,.08), rgba(3,23,47,.34));
             }
 
             .cta-footer-wrap > section,
