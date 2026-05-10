@@ -6,45 +6,42 @@
     <title>Oregon Tech AI Club | Building Intelligence. Securing the Future.</title>
 
     <!--
-      REQUIRED / OPTIONAL ASSETS
-      Place these files in your website folder using the paths below:
+      ASSET PATHS
 
       Required:
       - AI_Club_Logo.png
 
-      Optional but recommended:
-      - Images/hero-campus.jpg                         Hero background image of Oregon Tech/Klamath Falls
-      - Images/project-neural-network.jpg              Project card image
-      - Images/project-study-buddy.jpg                 Project card image
-      - Images/project-drone-vision.jpg                Project card image
-      - Images/officers/uriel-aguilar-torres.jpg       Officer headshot
-      - Images/officers/cody-gamble.jpg                Officer headshot
-      - Images/officers/jackson-wiencken.jpg           Officer headshot
-      - Images/officers/drake-macias.jpg               Officer headshot
-
-      Decorative SVG elements:
+      Optional:
+      - Images/hero-campus.jpg
+      - Images/project-neural-network.jpg
+      - Images/project-study-buddy.jpg
+      - Images/project-drone-vision.jpg
+      - Images/officers/uriel-aguilar-torres.jpg
+      - Images/officers/cody-gamble.jpg
+      - Images/officers/jackson-wiencken.jpg
+      - Images/officers/drake-macias.jpg
       - Images/elements/hero-left-circuits.svg
       - Images/elements/footer-left-circuits.svg
       - Images/elements/footer-right-circuits.svg
       - Images/elements/waves.png
 
-      IMPORTANT: use forward slashes in HTML/CSS paths, not backslashes.
+      Use forward slashes in paths:
       Correct: Images/elements/waves.png
-      Incorrect: \Images\elements\waves.png                  Background image behind the Join/Get Involved CTA section
-
-      Future optional element:
-      - Images/elements/header-logo-circuit-halo.svg    Circuit halo behind the hero logo
-
-      If optional images are missing, the page will still look good using gradient placeholders.
+      Incorrect: \Images\elements\waves.png
     -->
 
     <link rel="icon" type="image/png" href="AI_Club_Logo.png" />
     <link rel="apple-touch-icon" href="AI_Club_Logo.png" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
 
     <style>
+        /* =========================================================
+           BASE / RESET
+        ========================================================= */
+
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
@@ -64,15 +61,20 @@
             --muted: #5f6f86;
             --line: #dbe4ef;
             --card: #ffffff;
+            --radius-sm: 12px;
             --radius: 18px;
+            --radius-lg: 24px;
             --shadow-sm: 0 4px 16px rgba(8, 31, 61, .08);
             --shadow-md: 0 12px 34px rgba(8, 31, 61, .14);
             --shadow-gold: 0 10px 30px rgba(248, 189, 34, .26);
             --max: 1220px;
+            --container-padding: 3rem;
+            --section-padding: 5.5rem;
         }
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 92px;
         }
 
         body {
@@ -81,15 +83,24 @@
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
+            text-rendering: optimizeLegibility;
+            -webkit-font-smoothing: antialiased;
         }
 
-        img {
+        img,
+        picture,
+        svg {
             max-width: 100%;
             display: block;
         }
 
         a {
             color: inherit;
+        }
+
+        button,
+        input {
+            font: inherit;
         }
 
         h1, h2, h3, h4 {
@@ -100,7 +111,7 @@
         }
 
         h1 {
-            font-size: clamp(3rem, 7vw, 5.9rem);
+            font-size: clamp(2.65rem, 7vw, 5.9rem);
             font-weight: 800;
         }
 
@@ -123,10 +134,21 @@
             background: var(--off-white);
         }
 
-        .container {
-            width: min(var(--max), calc(100% - 3rem));
+        .container,
+        .nav-inner,
+        .hero-inner,
+        .footer-main {
+            width: min(var(--max), calc(100% - var(--container-padding)));
             margin-inline: auto;
         }
+
+        section {
+            padding: var(--section-padding) 0;
+        }
+
+        /* =========================================================
+           TOP STRIP
+        ========================================================= */
 
         .top-strip {
             background: linear-gradient(90deg, var(--navy-dark), var(--navy), var(--navy-dark));
@@ -138,6 +160,7 @@
             .top-strip .container {
                 display: flex;
                 justify-content: space-between;
+                align-items: center;
                 gap: 1rem;
                 padding: .5rem 0;
             }
@@ -145,10 +168,13 @@
             .top-strip a {
                 color: var(--gold);
                 text-decoration: none;
-                font-weight: 700;
+                font-weight: 800;
             }
 
-        /* NAV */
+        /* =========================================================
+           NAVIGATION
+        ========================================================= */
+
         .site-nav {
             position: sticky;
             top: 0;
@@ -159,8 +185,6 @@
         }
 
         .nav-inner {
-            width: min(var(--max), calc(100% - 3rem));
-            margin-inline: auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -178,11 +202,13 @@
             font-weight: 800;
             letter-spacing: -.02em;
             white-space: nowrap;
+            min-width: 0;
         }
 
             .brand img {
                 width: 58px;
                 height: 58px;
+                flex: 0 0 auto;
                 border-radius: 50%;
                 border: 2px solid rgba(248,189,34,.75);
                 box-shadow: 0 0 24px rgba(248,189,34,.18);
@@ -197,15 +223,15 @@
             list-style: none;
             display: flex;
             align-items: center;
-            gap: 1.65rem;
+            gap: clamp(.9rem, 1.6vw, 1.65rem);
         }
 
             .nav-links a {
                 color: rgba(255,255,255,.82);
                 text-decoration: none;
-                font-weight: 700;
+                font-weight: 800;
                 font-size: .94rem;
-                transition: color .2s ease;
+                transition: color .2s ease, background .2s ease, transform .2s ease;
                 position: relative;
             }
 
@@ -233,6 +259,10 @@
             box-shadow: var(--shadow-gold);
         }
 
+            .nav-join:hover {
+                background: #ffd25b;
+            }
+
         .hamburger {
             display: none;
             width: 44px;
@@ -252,7 +282,7 @@
                 height: 2px;
                 background: #fff;
                 border-radius: 99px;
-                transition: .2s ease;
+                transition: transform .2s ease, opacity .2s ease;
             }
 
             .hamburger.open span:nth-child(1) {
@@ -267,7 +297,63 @@
                 transform: translateY(-7px) rotate(-45deg);
             }
 
-        /* HERO */
+        /* =========================================================
+           BUTTONS
+        ========================================================= */
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: .55rem;
+            min-height: 48px;
+            padding: .8rem 1.4rem;
+            border-radius: 12px;
+            border: 0;
+            text-decoration: none;
+            font-weight: 900;
+            transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+            cursor: pointer;
+        }
+
+            .btn:hover {
+                transform: translateY(-2px);
+            }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--navy-dark);
+            box-shadow: var(--shadow-gold);
+        }
+
+            .btn-primary:hover {
+                background: #ffd25b;
+            }
+
+        .btn-outline-light {
+            color: #fff;
+            border: 1px solid rgba(255,255,255,.65);
+            background: rgba(255,255,255,.05);
+        }
+
+            .btn-outline-light:hover {
+                background: rgba(255,255,255,.12);
+            }
+
+        .btn-navy {
+            background: var(--navy);
+            color: #fff;
+            box-shadow: var(--shadow-sm);
+        }
+
+            .btn-navy:hover {
+                background: var(--navy-soft);
+            }
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
         .hero {
             position: relative;
             overflow: hidden;
@@ -278,8 +364,6 @@
             border-bottom: 5px solid var(--gold);
         }
 
-
-        /* DECORATIVE SVG CIRCUITS */
         .decor-svg {
             position: absolute;
             pointer-events: none;
@@ -293,47 +377,23 @@
             left: 0;
             top: 125px;
             width: clamp(170px, 18vw, 310px);
-            opacity: .6;
+            opacity: .1;
         }
 
         .hero-circuit-right {
             right: 0;
             top: 125px;
             width: clamp(170px, 18vw, 310px);
-            opacity: .6;
+            opacity: .1;
             transform: scaleX(-1);
-        }
-
-        .hero-logo-halo {
-            right: clamp(90px, 15vw, 230px);
-            top: 135px;
-            width: clamp(260px, 30vw, 430px);
-            opacity: .55;
-            filter: drop-shadow(0 0 28px rgba(248, 189, 34, .18));
-        }
-
-        .footer-circuit-left {
-            left: 0;
-            bottom: 48px;
-            width: clamp(150px, 17vw, 280px);
-            opacity: .38;
-        }
-
-        .footer-circuit-right {
-            right: 0;
-            bottom: 48px;
-            width: clamp(150px, 17vw, 280px);
-            opacity: .38;
         }
 
         .hero-inner {
             position: relative;
             z-index: 2;
-            width: min(var(--max), calc(100% - 3rem));
-            margin-inline: auto;
             min-height: 620px;
             display: grid;
-            grid-template-columns: minmax(0, 1fr) 420px;
+            grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
             gap: clamp(2rem, 6vw, 5rem);
             align-items: center;
             padding: 5.8rem 0;
@@ -351,7 +411,7 @@
             text-transform: uppercase;
             letter-spacing: .09em;
             font-size: .76rem;
-            font-weight: 800;
+            font-weight: 900;
             margin-bottom: 1.4rem;
         }
 
@@ -395,87 +455,57 @@
             flex-wrap: wrap;
         }
 
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: .55rem;
-            min-height: 48px;
-            padding: .8rem 1.4rem;
-            border-radius: 12px;
-            border: 0;
-            text-decoration: none;
-            font-weight: 800;
-            transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
-            cursor: pointer;
-            font-family: 'Inter', sans-serif;
-        }
-
-            .btn:hover {
-                transform: translateY(-2px);
-            }
-
-        .btn-primary {
-            background: var(--gold);
-            color: var(--navy-dark);
-            box-shadow: var(--shadow-gold);
-        }
-
-            .btn-primary:hover {
-                background: #ffd25b;
-            }
-
-        .btn-outline-light {
-            color: #fff;
-            border: 1px solid rgba(255,255,255,.65);
-            background: rgba(255,255,255,.05);
-        }
-
-            .btn-outline-light:hover {
-                background: rgba(255,255,255,.12);
-            }
-
-        .btn-navy {
-            background: var(--navy);
-            color: #fff;
-            box-shadow: var(--shadow-sm);
-        }
-
-            .btn-navy:hover {
-                background: var(--navy-soft);
-            }
-
         .hero-logo-card {
             position: relative;
             display: grid;
             place-items: center;
             aspect-ratio: 1;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(248,189,34,.28), rgba(248,189,34,.08) 42%, transparent 70%);
+            isolation: isolate;
+            background: transparent;
         }
 
+            /* Soft gold glow behind the logo */
             .hero-logo-card::before {
                 content: '';
                 position: absolute;
-                inset: 25px;
-                border: 1px solid rgba(248,189,34,.4);
+                inset: -10%;
+                z-index: -2;
                 border-radius: 50%;
-                box-shadow: 0 0 55px rgba(248,189,34,.42);
+                background: radial-gradient( circle, rgba(248, 189, 34, .42) 0%, rgba(248, 189, 34, .26) 24%, rgba(248, 189, 34, .12) 46%, rgba(248, 189, 34, .04) 64%, transparent 78% );
+                filter: blur(18px);
+            }
+
+            /* Crisp outer halo */
+            .hero-logo-card::after {
+                content: '';
+                position: absolute;
+                inset: 15%;
+                z-index: -1;
+                border-radius: 50%;
+                border: 2px solid rgba(248, 189, 34, .42);
+                box-shadow: 0 0 26px rgba(248, 189, 34, .40), 0 0 62px rgba(248, 189, 34, .28), 0 0 110px rgba(248, 189, 34, .16);
+                background: radial-gradient( circle, rgba(248, 189, 34, .10) 0%, rgba(248, 189, 34, .05) 44%, transparent 70% );
             }
 
             .hero-logo-card img {
                 position: relative;
-                width: min(340px, 82%);
+                z-index: 1;
+                width: min(330px, 80%);
                 height: auto;
                 border-radius: 50%;
-                filter: drop-shadow(0 24px 42px rgba(0,0,0,.35));
+                filter: drop-shadow(0 22px 34px rgba(0,0,0,.38)) drop-shadow(0 0 26px rgba(248,189,34,.32));
             }
 
-        /* FEATURE CARDS */
+        /* =========================================================
+           FEATURE CARDS
+        ========================================================= */
+
         .feature-strip {
             position: relative;
             z-index: 5;
             margin-top: -54px;
+            padding-top: 0;
         }
 
         .feature-grid {
@@ -532,10 +562,9 @@
             line-height: 1.5;
         }
 
-        /* COMMON SECTIONS */
-        section {
-            padding: 5.5rem 0;
-        }
+        /* =========================================================
+           COMMON SECTIONS
+        ========================================================= */
 
         .section-heading {
             display: flex;
@@ -561,7 +590,7 @@
 
         .homepage-grid {
             display: grid;
-            grid-template-columns: 1fr 1.65fr 1fr;
+            grid-template-columns: minmax(230px, 1fr) minmax(0, 1.65fr) minmax(230px, 1fr);
             gap: 1.3rem;
             align-items: start;
         }
@@ -601,7 +630,10 @@
             padding: 1rem;
         }
 
-        /* EVENTS */
+        /* =========================================================
+           EVENTS
+        ========================================================= */
+
         .event-list {
             display: grid;
             gap: .85rem;
@@ -635,7 +667,7 @@
 
             .event-date .day {
                 display: block;
-                font-family: 'Sora';
+                font-family: 'Sora', sans-serif;
                 color: var(--navy);
                 font-size: 1.35rem;
                 font-weight: 800;
@@ -652,7 +684,10 @@
             line-height: 1.45;
         }
 
-        /* PROJECTS */
+        /* =========================================================
+           PROJECTS
+        ========================================================= */
+
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -665,7 +700,7 @@
         }
 
         .project-img {
-            height: 116px;
+            min-height: 116px;
             background: linear-gradient(135deg, rgba(0,55,103,.95), rgba(15,76,134,.75)), var(--project-img, none);
             background-size: cover;
             background-position: center;
@@ -703,10 +738,13 @@
             border-radius: 999px;
             padding: .18rem .55rem;
             font-size: .67rem;
-            font-weight: 800;
+            font-weight: 900;
         }
 
-        /* OFFICERS */
+        /* =========================================================
+           OFFICERS
+        ========================================================= */
+
         .leaders-list {
             display: grid;
             gap: .25rem;
@@ -736,7 +774,7 @@
             place-items: center;
             background: var(--navy);
             color: rgba(255,255,255,.78);
-            font-family: 'Sora';
+            font-family: 'Sora', sans-serif;
             font-weight: 800;
             border: 2px solid var(--gold);
             overflow: hidden;
@@ -756,7 +794,10 @@
             font-size: .78rem;
         }
 
-        /* ABOUT / JOIN */
+        /* =========================================================
+           ABOUT
+        ========================================================= */
+
         .about-band {
             background: #fff;
             border-top: 1px solid var(--line);
@@ -765,14 +806,14 @@
 
         .about-layout {
             display: grid;
-            grid-template-columns: 1.2fr .8fr;
+            grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
             gap: 2rem;
             align-items: center;
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 1rem;
         }
 
@@ -785,7 +826,7 @@
 
             .stat strong {
                 display: block;
-                font-family: 'Sora';
+                font-family: 'Sora', sans-serif;
                 color: var(--navy);
                 font-size: 1.8rem;
                 margin-bottom: .2rem;
@@ -796,106 +837,20 @@
                 font-size: .85rem;
             }
 
-        .join-band {
-            background: radial-gradient(circle at 75% 20%, rgba(248,189,34,.14), transparent 34%), linear-gradient(135deg, var(--navy-dark), var(--navy));
+        /* =========================================================
+           SHARED JOIN + FOOTER BACKGROUND
+           The waves image spans both the Get Involved section and footer.
+        ========================================================= */
+
+        .cta-footer-wrap {
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
             color: #fff;
-            position: relative;
-            overflow: hidden;
+            background: linear-gradient( 115deg, #03172f 0%, #003767 58%, #0b4c7c 100% );
         }
 
-            .join-band h2 {
-                color: #fff;
-            }
-
-            .join-band p {
-                color: rgba(255,255,255,.78);
-            }
-
-        .join-box {
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 1.5rem;
-            align-items: center;
-            background: rgba(255,255,255,.07);
-            border: 1px solid rgba(255,255,255,.13);
-            border-radius: 24px;
-            padding: 2rem;
-        }
-
-
-        /* JOIN SECTION BACKGROUND IMAGE */
-        #join {
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(90deg, rgba(3, 23, 47, .96), rgba(0, 55, 103, .86)), url('Images/elements/waves.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            isolation: isolate;
-        }
-
-            #join::before {
-                content: '';
-                position: absolute;
-                inset: 0;
-                z-index: 0;
-                pointer-events: none;
-                background: radial-gradient(circle at 50% 20%, rgba(248, 189, 34, .12), transparent 36%), linear-gradient(180deg, rgba(3, 23, 47, .15), rgba(3, 23, 47, .45));
-            }
-
-        .join-card {
-            position: relative;
-            z-index: 1;
-        }
-
-
-        /* JOIN SECTION WAVES OVERLAY */
-        .join-section {
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(115deg, var(--navy-dark) 0%, var(--navy) 58%, #0b4c7c 100%);
-            isolation: isolate;
-        }
-
-            .join-section::before {
-                content: '';
-                position: absolute;
-                inset: 0;
-                z-index: 0;
-                pointer-events: none;
-                background-image: url('Images/elements/waves.png');
-                background-repeat: no-repeat;
-                background-position: center;
-                background-size: cover;
-                opacity: .34;
-                mix-blend-mode: screen;
-            }
-
-            .join-section::after {
-                content: '';
-                position: absolute;
-                inset: 0;
-                z-index: 0;
-                pointer-events: none;
-                background: radial-gradient(circle at 50% 15%, rgba(248, 189, 34, .10), transparent 34%), linear-gradient(180deg, rgba(3, 23, 47, .04), rgba(3, 23, 47, .28));
-            }
-
-            .join-section .container,
-            .join-card {
-                position: relative;
-                z-index: 1;
-            }
-
-
-        /* WAVES BACKGROUND FOR THE GET INVOLVED / RESOURCES CTA BAND */
-        .join-band {
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(115deg, var(--navy-dark) 0%, var(--navy) 58%, #0b4c7c 100%);
-            isolation: isolate;
-        }
-
-            .join-band::before {
+            .cta-footer-wrap::before {
                 content: '';
                 position: absolute;
                 inset: 0;
@@ -903,39 +858,81 @@
                 pointer-events: none;
                 background-image: url("Images/elements/waves.png");
                 background-repeat: no-repeat;
-                background-position: center;
+                background-position: center center;
                 background-size: cover;
-                opacity: .72;
+                opacity: .1;
                 mix-blend-mode: screen;
             }
 
-            .join-band::after {
+            .cta-footer-wrap > section,
+            .cta-footer-wrap > footer {
+                position: relative;
+                z-index: 1;
+            }
+
+        /* =========================================================
+           JOIN / GET INVOLVED
+        ========================================================= */
+
+        .join-band {
+            position: relative;
+            overflow: hidden;
+            background: rgba(3, 23, 47, .34);
+            color: #fff;
+            padding-bottom: 2.5rem;
+        }
+
+            .join-band h2 {
+                color: #fff;
+            }
+
+            .join-band p {
+                color: rgba(255,255,255,.82);
+            }
+
+        .join-box {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 1.5rem;
+            align-items: center;
+            background: rgba(255,255,255,.18);
+            border: 1px solid rgba(255,255,255,.24);
+            border-radius: 24px;
+            padding: 2rem;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 18px 45px rgba(0, 0, 0, .16);
+        }
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            position: relative;
+            overflow: hidden;
+            background: rgba(3, 23, 47, .34);
+            color: #fff;
+            overflow: hidden;
+        }
+
+            footer::before {
                 content: '';
                 position: absolute;
                 inset: 0;
                 z-index: 0;
                 pointer-events: none;
-                background: radial-gradient(circle at 50% 16%, rgba(248, 189, 34, .10), transparent 34%), linear-gradient(180deg, rgba(3, 23, 47, .08), rgba(3, 23, 47, .22));
             }
 
-            .join-band .join-box {
-                position: relative;
-                z-index: 1;
-            }
-
-        /* FOOTER */
-        footer {
-            background: var(--navy-dark);
-            color: #fff;
-            position: relative;
-            overflow: hidden;
+        .footer-circuit-left,
+        .footer-circuit-right {
+            display: none !important;
         }
 
         .footer-main {
             position: relative;
             z-index: 2;
-            width: min(var(--max), calc(100% - 3rem));
-            margin-inline: auto;
             display: grid;
             grid-template-columns: 1.15fr 1fr 1fr 1.1fr;
             gap: 2rem;
@@ -953,6 +950,7 @@
                 height: 86px;
                 border-radius: 50%;
                 border: 2px solid var(--gold);
+                flex: 0 0 auto;
             }
 
         .footer-main h3 {
@@ -960,8 +958,9 @@
             margin-bottom: .7rem;
         }
 
-        .footer-main p, .footer-main a {
-            color: rgba(255,255,255,.72);
+        .footer-main p,
+        .footer-main a {
+            color: rgba(255,255,255,.82);
             font-size: .92rem;
             text-decoration: none;
         }
@@ -972,6 +971,7 @@
 
         .social-row {
             display: flex;
+            flex-wrap: wrap;
             gap: .75rem;
             margin-top: .75rem;
         }
@@ -1008,14 +1008,22 @@
                 color: var(--navy-dark);
                 font-weight: 900;
                 padding: .78rem 1rem;
+                cursor: pointer;
             }
+
+                .subscribe button:disabled,
+                .subscribe input:disabled {
+                    opacity: .72;
+                    cursor: not-allowed;
+                }
 
         .footer-bottom {
             position: relative;
             z-index: 2;
-            border-top: 1px solid rgba(255,255,255,.1);
-            color: rgba(255,255,255,.54);
+            border-top: 1px solid rgba(255,255,255,.12);
+            color: rgba(255,255,255,.72);
             font-size: .85rem;
+            background: rgba(3, 23, 47, .24);
         }
 
             .footer-bottom .container {
@@ -1026,7 +1034,10 @@
                 flex-wrap: wrap;
             }
 
-        /* ANIMATION */
+        /* =========================================================
+           ANIMATION
+        ========================================================= */
+
         .reveal {
             opacity: 0;
             transform: translateY(22px);
@@ -1038,54 +1049,95 @@
                 transform: translateY(0);
             }
 
-        @media (max-width: 1050px) {
-            .hero-inner {
-                grid-template-columns: 1fr;
-                text-align: left;
-                min-height: auto;
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
             }
 
-            .hero-logo-card {
-                max-width: 360px;
-                margin-inline: auto;
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: .01ms !important;
             }
 
-            .feature-grid {
-                grid-template-columns: 1fr 1fr;
+            .reveal {
+                opacity: 1;
+                transform: none;
             }
+        }
+
+        /* =========================================================
+           RESPONSIVE: LAPTOP / TABLET
+        ========================================================= */
+
+        @media (max-width: 1120px) {
+            .nav-links {
+                gap: .9rem;
+            }
+
+                .nav-links a {
+                    font-size: .9rem;
+                }
 
             .homepage-grid {
                 grid-template-columns: 1fr;
             }
 
-            .footer-main {
-                grid-template-columns: 1fr 1fr;
+            .projects-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .project-img {
+                min-height: 150px;
+            }
+        }
+
+        @media (max-width: 1050px) {
+            :root {
+                --section-padding: 5rem;
+            }
+
+            .hero-inner {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                min-height: auto;
+                text-align: center;
+            }
+
+            .hero-copy {
+                margin-inline: auto;
+            }
+
+            .hero-ctas {
+                justify-content: center;
+            }
+
+            .hero-logo-card {
+                max-width: 340px;
+                margin-inline: auto;
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
             }
 
             .about-layout {
                 grid-template-columns: 1fr;
             }
+
+            .footer-main {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
         }
 
-        @media (max-width: 760px) {
-            .top-strip {
-                display: none;
-            }
+        /* =========================================================
+           RESPONSIVE: MOBILE NAV
+        ========================================================= */
 
-            .nav-inner {
-                min-height: 72px;
-                width: min(var(--max), calc(100% - 2rem));
-            }
-
-            .brand img {
-                width: 48px;
-                height: 48px;
-            }
-
-            .brand span {
-                font-size: .9rem;
-            }
-
+        @media (max-width: 860px) {
             .hamburger {
                 display: flex;
             }
@@ -1102,6 +1154,7 @@
                 background: var(--navy-dark);
                 border-bottom: 1px solid rgba(255,255,255,.1);
                 padding: 1rem;
+                box-shadow: 0 18px 40px rgba(0, 0, 0, .22);
             }
 
                 .nav-links.open {
@@ -1110,35 +1163,91 @@
 
                 .nav-links a {
                     display: block;
-                    padding: .75rem 1rem;
+                    padding: .8rem 1rem;
+                    border-radius: 10px;
+                    min-height: 44px;
                 }
+
+                    .nav-links a:hover {
+                        background: rgba(255,255,255,.08);
+                    }
 
                     .nav-links a.active::after {
                         display: none;
                     }
 
             .nav-join {
+                margin-top: .35rem;
                 text-align: center;
             }
 
-            .container, .hero-inner, .nav-inner, .footer-main {
-                width: min(var(--max), calc(100% - 2rem));
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-img {
+                min-height: 190px;
+            }
+        }
+
+        /* =========================================================
+           RESPONSIVE: PHONES
+        ========================================================= */
+
+        @media (max-width: 760px) {
+            :root {
+                --container-padding: 1.5rem;
+                --section-padding: 4rem;
+            }
+
+            .top-strip {
+                display: none;
+            }
+
+            html {
+                scroll-padding-top: 76px;
+            }
+
+            .nav-inner {
+                min-height: 72px;
+            }
+
+            .brand img {
+                width: 48px;
+                height: 48px;
+            }
+
+            .brand > span {
+                font-size: .9rem;
+                line-height: 1.15;
             }
 
             .hero-inner {
                 padding: 4rem 0;
             }
 
-            .feature-grid, .projects-grid, .stats-grid, .footer-main {
-                grid-template-columns: 1fr;
+            .hero-circuit-left,
+            .hero-circuit-right,
+            .footer-circuit-left,
+            .footer-circuit-right {
+                opacity: .18;
+                width: 150px;
             }
 
             .feature-strip {
                 margin-top: 1rem;
+                padding-bottom: 0;
+            }
+
+            .feature-grid,
+            .stats-grid,
+            .footer-main {
+                grid-template-columns: 1fr;
             }
 
             .feature-card {
                 grid-template-columns: 54px 1fr;
+                padding: 1.15rem;
             }
 
             .icon-badge {
@@ -1151,56 +1260,122 @@
                 display: block;
             }
 
+            .panel-header {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: .35rem;
+            }
+
             .join-box {
                 grid-template-columns: 1fr;
+                padding: 1.5rem;
+                text-align: center;
+            }
+
+                .join-box .btn {
+                    width: 100%;
+                }
+
+            .footer-brand {
+                align-items: flex-start;
             }
 
             .subscribe {
                 flex-direction: column;
             }
+
+                .subscribe button,
+                .subscribe input {
+                    width: 100%;
+                }
         }
 
+        @media (max-width: 560px) {
+            :root {
+                --section-padding: 3.25rem;
+            }
 
-        .join-band {
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient( 115deg, rgba(3, 23, 47, .98) 0%, rgba(0, 55, 103, .94) 58%, rgba(11, 76, 124, .92) 100% );
-            isolation: isolate;
-        }
+            h1 {
+                font-size: clamp(2.4rem, 14vw, 3.4rem);
+            }
 
-            /* Waves image */
-            .join-band::before {
-                content: '';
-                position: absolute;
-                inset: 0;
-                z-index: 1;
-                pointer-events: none;
-                background-image: url("Images/elements/waves.png");
-                background-repeat: no-repeat;
+            h2 {
+                font-size: clamp(1.75rem, 10vw, 2.35rem);
+            }
+
+            .hero {
                 background-position: center;
-                background-size: cover;
-                opacity: .05;
-                mix-blend-mode: normal;
             }
 
-            /* Optional very light overlay */
-            .join-band::after {
-                content: '';
-                position: absolute;
-                inset: 0;
-                z-index: 2;
-                pointer-events: none;
-                background: linear-gradient( 180deg, rgba(3, 23, 47, .02), rgba(3, 23, 47, .08) );
+            .hero-inner {
+                padding: 3.25rem 0;
             }
 
-            /* Content above everything */
-            .join-band .container,
-            .join-band .join-box {
-                position: relative;
-                z-index: 3;
+            .hero-copy {
+                font-size: .98rem;
             }
+
+            .hero-ctas {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+                .hero-ctas .btn {
+                    width: 100%;
+                }
+
+            .hero-logo-card {
+                max-width: 250px;
+            }
+
+                .hero-logo-card::before {
+                    inset: -8%;
+                }
+
+            .hero-circuit-left,
+            .hero-circuit-right {
+                display: none;
+            }
+
+            .project-img {
+                min-height: 160px;
+            }
+
+            .event-row {
+                grid-template-columns: 56px 1fr;
+            }
+
+            .footer-bottom .container {
+                display: grid;
+            }
+        }
+
+        @media (max-width: 390px) {
+            .brand > span {
+                max-width: 170px;
+                white-space: normal;
+            }
+
+            .feature-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .icon-badge {
+                margin-inline: auto;
+            }
+
+            .event-row {
+                grid-template-columns: 1fr;
+            }
+
+            .event-date {
+                max-width: 76px;
+            }
+        }
     </style>
 </head>
+
 <body>
     <div class="page-shell">
         <div class="top-strip">
@@ -1227,8 +1402,10 @@
                     <li><a href="https://theroost.oit.edu/feeds?type=club&type_id=35573" target="_blank" class="nav-join" rel="noopener">Join</a></li>
                 </ul>
 
-                <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Open navigation menu" aria-expanded="false">
-                    <span></span><span></span><span></span>
+                <button class="hamburger" id="hamburger" type="button" onclick="toggleNav()" aria-label="Open navigation menu" aria-controls="navLinks" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </button>
             </div>
         </nav>
@@ -1236,20 +1413,20 @@
         <header class="hero" id="home">
             <img src="Images/elements/hero-left-circuits.svg" alt="" class="decor-svg hero-circuit-left" aria-hidden="true" />
             <img src="Images/elements/hero-left-circuits.svg" alt="" class="decor-svg hero-circuit-right" aria-hidden="true" />
-            <!-- Add this file later when it is ready:
-            <img src="Images/elements/header-logo-circuit-halo.svg" alt="" class="decor-svg hero-logo-halo" aria-hidden="true" />
-            -->
+
             <div class="hero-inner">
                 <div class="hero-copy-block reveal visible">
                     <div class="hero-kicker">Student Organization</div>
                     <h1>Oregon Tech <span>AI Club</span></h1>
                     <div class="hero-subtitle">Building Intelligence. Securing the Future.</div>
                     <p class="hero-copy">We are a community of students passionate about artificial intelligence, machine learning, cybersecurity, and technology for good. Learn. Build. Collaborate. Lead.</p>
+
                     <div class="hero-ctas">
                         <a href="https://theroost.oit.edu/feeds?type=club&type_id=35573" target="_blank" class="btn btn-primary" rel="noopener">👥 Join Us</a>
                         <a href="#about" class="btn btn-outline-light">📖 Learn More</a>
                     </div>
                 </div>
+
                 <div class="hero-logo-card reveal visible">
                     <img src="AI_Club_Logo.png" alt="Oregon Tech AI Club owl logo" />
                 </div>
@@ -1266,6 +1443,7 @@
                             <p>Hands-on sessions to build practical AI skills.</p>
                         </div>
                     </article>
+
                     <article class="feature-card reveal visible">
                         <div class="icon-badge" aria-hidden="true">🧠</div>
                         <div>
@@ -1273,6 +1451,7 @@
                             <p>Work on real-world problems and portfolio pieces.</p>
                         </div>
                     </article>
+
                     <article class="feature-card reveal visible">
                         <div class="icon-badge" aria-hidden="true">👥</div>
                         <div>
@@ -1280,6 +1459,7 @@
                             <p>Collaborate with peers across majors and skill levels.</p>
                         </div>
                     </article>
+
                     <article class="feature-card reveal visible">
                         <div class="icon-badge" aria-hidden="true">📈</div>
                         <div>
@@ -1298,11 +1478,24 @@
                         <p style="margin-top:1rem;">The Oregon Tech AI Club brings together students passionate about artificial intelligence, cybersecurity, and information technology — regardless of major or prior experience. We focus on practical learning, ethical technology, career preparation, and student-led projects.</p>
                         <p style="margin-top:.8rem;">Membership is free and open to all enrolled Oregon Tech students. Join through The Roost or stop by a meeting to get connected.</p>
                     </div>
+
                     <div class="stats-grid reveal">
-                        <div class="stat"><strong>Free</strong><span>No membership dues required</span></div>
-                        <div class="stat"><strong>All</strong><span>Majors and skill levels welcome</span></div>
-                        <div class="stat"><strong>2×</strong><span>General meetings per month</span></div>
-                        <div class="stat"><strong>OIT</strong><span>Recognized student organization</span></div>
+                        <div class="stat">
+                            <strong>Free</strong>
+                            <span>No membership dues required</span>
+                        </div>
+                        <div class="stat">
+                            <strong>All</strong>
+                            <span>Majors and skill levels welcome</span>
+                        </div>
+                        <div class="stat">
+                            <strong>2×</strong>
+                            <span>General meetings per month</span>
+                        </div>
+                        <div class="stat">
+                            <strong>OIT</strong>
+                            <span>Recognized student organization</span>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1323,18 +1516,39 @@
                                 <h3>📅 Upcoming Events</h3>
                                 <a href="#events">View All →</a>
                             </div>
+
                             <div class="panel-body event-list">
                                 <div class="event-row">
-                                    <div class="event-date"><span class="month">May</span><span class="day">15</span></div>
-                                    <div><h4>Intro to PyTorch Workshop</h4><p>Hands-on neural network workshop. Laptops encouraged.</p></div>
+                                    <div class="event-date">
+                                        <span class="month">May</span>
+                                        <span class="day">15</span>
+                                    </div>
+                                    <div>
+                                        <h4>Intro to PyTorch Workshop</h4>
+                                        <p>Hands-on neural network workshop. Laptops encouraged.</p>
+                                    </div>
                                 </div>
+
                                 <div class="event-row">
-                                    <div class="event-date"><span class="month">May</span><span class="day">22</span></div>
-                                    <div><h4>Applied ML in Industry</h4><p>Guest speaker discussion on model deployment.</p></div>
+                                    <div class="event-date">
+                                        <span class="month">May</span>
+                                        <span class="day">22</span>
+                                    </div>
+                                    <div>
+                                        <h4>Applied ML in Industry</h4>
+                                        <p>Guest speaker discussion on model deployment.</p>
+                                    </div>
                                 </div>
+
                                 <div class="event-row">
-                                    <div class="event-date"><span class="month">Jun</span><span class="day">07</span></div>
-                                    <div><h4>Project Showcase</h4><p>Members present semester projects to the OIT community.</p></div>
+                                    <div class="event-date">
+                                        <span class="month">Jun</span>
+                                        <span class="day">07</span>
+                                    </div>
+                                    <div>
+                                        <h4>Project Showcase</h4>
+                                        <p>Members present semester projects to the OIT community.</p>
+                                    </div>
                                 </div>
                             </div>
                         </article>
@@ -1344,6 +1558,7 @@
                                 <h3>💻 What We’re Building</h3>
                                 <a href="#projects">View Projects →</a>
                             </div>
+
                             <div class="panel-body projects-grid">
                                 <div class="project-card">
                                     <div class="project-img" style="--project-img:url('Images/project-neural-network.jpg')"></div>
@@ -1353,6 +1568,7 @@
                                         <span class="tag">Python · ML</span>
                                     </div>
                                 </div>
+
                                 <div class="project-card">
                                     <div class="project-img" style="--project-img:url('Images/project-study-buddy.jpg')"></div>
                                     <div class="project-copy">
@@ -1361,6 +1577,7 @@
                                         <span class="tag">NLP · RAG</span>
                                     </div>
                                 </div>
+
                                 <div class="project-card">
                                     <div class="project-img" style="--project-img:url('Images/project-drone-vision.jpg')"></div>
                                     <div class="project-copy">
@@ -1377,22 +1594,46 @@
                                 <h3>👥 Meet Our Officers</h3>
                                 <a href="#leadership">View All →</a>
                             </div>
+
                             <div class="panel-body leaders-list">
                                 <div class="leader-row">
-                                    <div class="avatar"><img src="Images/officers/uriel-aguilar-torres.jpg" alt="Uriel Aguilar Torres" onerror="this.remove(); this.parentElement.textContent='UA';" /></div>
-                                    <div><h4>Uriel Aguilar Torres</h4><p>President</p></div>
+                                    <div class="avatar">
+                                        <img src="Images/officers/uriel-aguilar-torres.jpg" alt="Uriel Aguilar Torres" onerror="this.remove(); this.parentElement.textContent='UA';" />
+                                    </div>
+                                    <div>
+                                        <h4>Uriel Aguilar Torres</h4>
+                                        <p>President</p>
+                                    </div>
                                 </div>
+
                                 <div class="leader-row">
-                                    <div class="avatar"><img src="Images/officers/cody-gamble.jpg" alt="Cody Gamble" onerror="this.remove(); this.parentElement.textContent='CG';" /></div>
-                                    <div><h4>Cody Gamble</h4><p>Vice President</p></div>
+                                    <div class="avatar">
+                                        <img src="Images/officers/cody-gamble.jpg" alt="Cody Gamble" onerror="this.remove(); this.parentElement.textContent='CG';" />
+                                    </div>
+                                    <div>
+                                        <h4>Cody Gamble</h4>
+                                        <p>Vice President</p>
+                                    </div>
                                 </div>
+
                                 <div class="leader-row">
-                                    <div class="avatar"><img src="Images/officers/jackson-wiencken.jpg" alt="Jackson Wiencken" onerror="this.remove(); this.parentElement.textContent='JW';" /></div>
-                                    <div><h4>Jackson Wiencken</h4><p>Secretary</p></div>
+                                    <div class="avatar">
+                                        <img src="Images/officers/jackson-wiencken.jpg" alt="Jackson Wiencken" onerror="this.remove(); this.parentElement.textContent='JW';" />
+                                    </div>
+                                    <div>
+                                        <h4>Jackson Wiencken</h4>
+                                        <p>Secretary</p>
+                                    </div>
                                 </div>
+
                                 <div class="leader-row">
-                                    <div class="avatar"><img src="Images/officers/drake-macias.jpg" alt="Drake Macias" onerror="this.remove(); this.parentElement.textContent='DM';" /></div>
-                                    <div><h4>Drake Macias</h4><p>Treasurer</p></div>
+                                    <div class="avatar">
+                                        <img src="Images/officers/drake-macias.jpg" alt="Drake Macias" onerror="this.remove(); this.parentElement.textContent='DM';" />
+                                    </div>
+                                    <div>
+                                        <h4>Drake Macias</h4>
+                                        <p>Treasurer</p>
+                                    </div>
                                 </div>
                             </div>
                         </article>
@@ -1400,6 +1641,9 @@
                 </div>
             </section>
 
+        </main>
+
+        <div class="cta-footer-wrap">
             <section id="resources" class="join-band">
                 <div class="container join-box reveal">
                     <div>
@@ -1407,87 +1651,120 @@
                         <h2>Ready to join the Oregon Tech AI Club?</h2>
                         <p style="margin-top:.85rem;">Join us on The Roost to receive announcements, event updates, and meeting details. No experience required — just curiosity.</p>
                     </div>
+
                     <a href="https://theroost.oit.edu/feeds?type=club&type_id=35573" target="_blank" rel="noopener" class="btn btn-primary">Join on The Roost →</a>
                 </div>
             </section>
-        </main>
 
-        <footer>
-            <img src="Images/elements/footer-left-circuits.svg" alt="" class="decor-svg footer-circuit-left" aria-hidden="true" />
-            <img src="Images/elements/footer-right-circuits.svg" alt="" class="decor-svg footer-circuit-right" aria-hidden="true" />
-            <div class="footer-main">
-                <div class="footer-brand">
-                    <img src="AI_Club_Logo.png" alt="Oregon Tech AI Club logo" />
+            <footer>
+                <div class="footer-main">
+                    <div class="footer-brand">
+                        <img src="AI_Club_Logo.png" alt="Oregon Tech AI Club logo" />
+                        <div>
+                            <h3>Oregon Tech AI Club</h3>
+                            <p>Building Intelligence.<br />Securing the Future.</p>
+                        </div>
+                    </div>
+
                     <div>
-                        <h3>Oregon Tech AI Club</h3>
-                        <p>Building Intelligence.<br />Securing the Future.</p>
+                        <h3>Contact Us</h3>
+                        <p><a href="mailto:aiclub@oit.edu">aiclub@oit.edu</a></p>
+                        <p>Oregon Tech, Klamath Falls, OR 97601</p>
+                        <p><a href="https://ai.oit.edu">ai.oit.edu</a></p>
+                    </div>
+
+                    <div>
+                        <h3>Follow Us</h3>
+                        <p>Replace these with your official club links.</p>
+                        <div class="social-row">
+                            <a href="#" aria-label="GitHub">GH</a>
+                            <a href="#" aria-label="LinkedIn">in</a>
+                            <a href="#" aria-label="Discord">DC</a>
+                            <a href="#" aria-label="Instagram">IG</a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3>Stay in the Loop</h3>
+                        <p>Join our mailing list for events, workshops, and project updates.</p>
+                        <form class="subscribe" onsubmit="handleSubscribe(event)">
+                            <input type="email" placeholder="Your email address" aria-label="Your email address" required />
+                            <button type="submit">Subscribe</button>
+                        </form>
                     </div>
                 </div>
-                <div>
-                    <h3>Contact Us</h3>
-                    <p><a href="mailto:aiclub@oit.edu">aiclub@oit.edu</a></p>
-                    <p>Oregon Tech, Klamath Falls, OR 97601</p>
-                    <p><a href="https://ai.oit.edu">ai.oit.edu</a></p>
-                </div>
-                <div>
-                    <h3>Follow Us</h3>
-                    <p>Replace these with your official club links.</p>
-                    <div class="social-row">
-                        <a href="#" aria-label="GitHub">GH</a>
-                        <a href="#" aria-label="LinkedIn">in</a>
-                        <a href="#" aria-label="Discord">DC</a>
-                        <a href="#" aria-label="Instagram">IG</a>
+
+                <div class="footer-bottom">
+                    <div class="container">
+                        <span>© 2025–2026 Oregon Tech AI Club. All rights reserved.</span>
+                        <span>Oregon Institute of Technology · Student Organization</span>
                     </div>
                 </div>
-                <div>
-                    <h3>Stay in the Loop</h3>
-                    <p>Join our mailing list for events, workshops, and project updates.</p>
-                    <form class="subscribe" onsubmit="handleSubscribe(event)">
-                        <input type="email" placeholder="Your email address" aria-label="Your email address" required />
-                        <button type="submit">Subscribe</button>
-                    </form>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="container">
-                    <span>© 2025–2026 Oregon Tech AI Club. All rights reserved.</span>
-                    <span>Oregon Institute of Technology · Student Organization</span>
-                </div>
-            </div>
-        </footer>
+            </footer>
+        </div>
     </div>
 
     <script>
+        const links = document.getElementById('navLinks');
+        const hamburger = document.getElementById('hamburger');
+
         function toggleNav() {
-            const links = document.getElementById('navLinks');
-            const hamburger = document.getElementById('hamburger');
             const isOpen = links.classList.toggle('open');
             hamburger.classList.toggle('open', isOpen);
             hamburger.setAttribute('aria-expanded', String(isOpen));
+            hamburger.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
         }
 
         document.querySelectorAll('#navLinks a').forEach(link => {
             link.addEventListener('click', () => {
-                const links = document.getElementById('navLinks');
-                const hamburger = document.getElementById('hamburger');
                 links.classList.remove('open');
                 hamburger.classList.remove('open');
                 hamburger.setAttribute('aria-expanded', 'false');
+                hamburger.setAttribute('aria-label', 'Open navigation menu');
             });
         });
 
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, { threshold: 0.12 });
+        document.addEventListener('click', event => {
+            const clickedInsideNav = event.target.closest('.site-nav');
 
-        document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
+            if (!clickedInsideNav && links.classList.contains('open')) {
+                links.classList.remove('open');
+                hamburger.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+                hamburger.setAttribute('aria-label', 'Open navigation menu');
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 860) {
+                links.classList.remove('open');
+                hamburger.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+                hamburger.setAttribute('aria-label', 'Open navigation menu');
+            }
+        });
+
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+
+            document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
+        } else {
+            document.querySelectorAll('.reveal').forEach(element => element.classList.add('visible'));
+        }
 
         function handleSubscribe(event) {
             event.preventDefault();
+
             const button = event.currentTarget.querySelector('button');
             const input = event.currentTarget.querySelector('input');
+
             button.textContent = 'Subscribed!';
             button.disabled = true;
             input.disabled = true;
