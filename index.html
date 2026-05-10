@@ -22,6 +22,19 @@
       - Images/officers/jackson-wiencken.jpg           Officer headshot
       - Images/officers/drake-macias.jpg               Officer headshot
 
+      Decorative SVG elements:
+      - Images/elements/hero-left-circuits.svg
+      - Images/elements/footer-left-circuits.svg
+      - Images/elements/footer-right-circuits.svg
+      - Images/elements/waves.png
+
+      IMPORTANT: use forward slashes in HTML/CSS paths, not backslashes.
+      Correct: Images/elements/waves.png
+      Incorrect: \Images\elements\waves.png                  Background image behind the Join/Get Involved CTA section
+
+      Future optional element:
+      - Images/elements/header-logo-circuit-halo.svg    Circuit halo behind the hero logo
+
       If optional images are missing, the page will still look good using gradient placeholders.
     -->
 
@@ -265,31 +278,53 @@
             border-bottom: 5px solid var(--gold);
         }
 
-            .hero::before,
-            .hero::after {
-                content: '';
-                position: absolute;
-                pointer-events: none;
-                opacity: .62;
-                background-image: linear-gradient(90deg, transparent 0 20px, rgba(248,189,34,.72) 20px 22px, transparent 22px), radial-gradient(circle at center, rgba(248,189,34,.9) 0 3px, transparent 4px);
-                background-size: 180px 70px, 90px 70px;
-            }
 
-            .hero::before {
-                width: 360px;
-                height: 360px;
-                left: -110px;
-                top: 70px;
-                transform: rotate(0deg);
-            }
+        /* DECORATIVE SVG CIRCUITS */
+        .decor-svg {
+            position: absolute;
+            pointer-events: none;
+            user-select: none;
+            z-index: 1;
+            display: block;
+            object-fit: contain;
+        }
 
-            .hero::after {
-                width: 520px;
-                height: 420px;
-                right: -90px;
-                top: 70px;
-                transform: rotate(180deg);
-            }
+        .hero-circuit-left {
+            left: 0;
+            top: 125px;
+            width: clamp(170px, 18vw, 310px);
+            opacity: .6;
+        }
+
+        .hero-circuit-right {
+            right: 0;
+            top: 125px;
+            width: clamp(170px, 18vw, 310px);
+            opacity: .6;
+            transform: scaleX(-1);
+        }
+
+        .hero-logo-halo {
+            right: clamp(90px, 15vw, 230px);
+            top: 135px;
+            width: clamp(260px, 30vw, 430px);
+            opacity: .55;
+            filter: drop-shadow(0 0 28px rgba(248, 189, 34, .18));
+        }
+
+        .footer-circuit-left {
+            left: 0;
+            bottom: 48px;
+            width: clamp(150px, 17vw, 280px);
+            opacity: .38;
+        }
+
+        .footer-circuit-right {
+            right: 0;
+            bottom: 48px;
+            width: clamp(150px, 17vw, 280px);
+            opacity: .38;
+        }
 
         .hero-inner {
             position: relative;
@@ -787,6 +822,107 @@
             padding: 2rem;
         }
 
+
+        /* JOIN SECTION BACKGROUND IMAGE */
+        #join {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(90deg, rgba(3, 23, 47, .96), rgba(0, 55, 103, .86)), url('Images/elements/waves.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            isolation: isolate;
+        }
+
+            #join::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                z-index: 0;
+                pointer-events: none;
+                background: radial-gradient(circle at 50% 20%, rgba(248, 189, 34, .12), transparent 36%), linear-gradient(180deg, rgba(3, 23, 47, .15), rgba(3, 23, 47, .45));
+            }
+
+        .join-card {
+            position: relative;
+            z-index: 1;
+        }
+
+
+        /* JOIN SECTION WAVES OVERLAY */
+        .join-section {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(115deg, var(--navy-dark) 0%, var(--navy) 58%, #0b4c7c 100%);
+            isolation: isolate;
+        }
+
+            .join-section::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                z-index: 0;
+                pointer-events: none;
+                background-image: url('Images/elements/waves.png');
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+                opacity: .34;
+                mix-blend-mode: screen;
+            }
+
+            .join-section::after {
+                content: '';
+                position: absolute;
+                inset: 0;
+                z-index: 0;
+                pointer-events: none;
+                background: radial-gradient(circle at 50% 15%, rgba(248, 189, 34, .10), transparent 34%), linear-gradient(180deg, rgba(3, 23, 47, .04), rgba(3, 23, 47, .28));
+            }
+
+            .join-section .container,
+            .join-card {
+                position: relative;
+                z-index: 1;
+            }
+
+
+        /* WAVES BACKGROUND FOR THE GET INVOLVED / RESOURCES CTA BAND */
+        .join-band {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(115deg, var(--navy-dark) 0%, var(--navy) 58%, #0b4c7c 100%);
+            isolation: isolate;
+        }
+
+            .join-band::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                z-index: 0;
+                pointer-events: none;
+                background-image: url("Images/elements/waves.png");
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+                opacity: .72;
+                mix-blend-mode: screen;
+            }
+
+            .join-band::after {
+                content: '';
+                position: absolute;
+                inset: 0;
+                z-index: 0;
+                pointer-events: none;
+                background: radial-gradient(circle at 50% 16%, rgba(248, 189, 34, .10), transparent 34%), linear-gradient(180deg, rgba(3, 23, 47, .08), rgba(3, 23, 47, .22));
+            }
+
+            .join-band .join-box {
+                position: relative;
+                z-index: 1;
+            }
+
         /* FOOTER */
         footer {
             background: var(--navy-dark);
@@ -794,28 +930,6 @@
             position: relative;
             overflow: hidden;
         }
-
-            footer::before,
-            footer::after {
-                content: '';
-                position: absolute;
-                width: 290px;
-                height: 180px;
-                opacity: .32;
-                background-image: linear-gradient(90deg, transparent 0 22px, rgba(248,189,34,.7) 22px 24px, transparent 24px), radial-gradient(circle, var(--gold) 0 2px, transparent 2.5px);
-                background-size: 120px 42px, 60px 42px;
-            }
-
-            footer::before {
-                left: -70px;
-                top: 40px;
-            }
-
-            footer::after {
-                right: -80px;
-                top: 40px;
-                transform: rotate(180deg);
-            }
 
         .footer-main {
             position: relative;
@@ -1045,6 +1159,46 @@
                 flex-direction: column;
             }
         }
+
+
+        .join-band {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient( 115deg, rgba(3, 23, 47, .98) 0%, rgba(0, 55, 103, .94) 58%, rgba(11, 76, 124, .92) 100% );
+            isolation: isolate;
+        }
+
+            /* Waves image */
+            .join-band::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                z-index: 1;
+                pointer-events: none;
+                background-image: url("Images/elements/waves.png");
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+                opacity: .05;
+                mix-blend-mode: normal;
+            }
+
+            /* Optional very light overlay */
+            .join-band::after {
+                content: '';
+                position: absolute;
+                inset: 0;
+                z-index: 2;
+                pointer-events: none;
+                background: linear-gradient( 180deg, rgba(3, 23, 47, .02), rgba(3, 23, 47, .08) );
+            }
+
+            /* Content above everything */
+            .join-band .container,
+            .join-band .join-box {
+                position: relative;
+                z-index: 3;
+            }
     </style>
 </head>
 <body>
@@ -1080,6 +1234,11 @@
         </nav>
 
         <header class="hero" id="home">
+            <img src="Images/elements/hero-left-circuits.svg" alt="" class="decor-svg hero-circuit-left" aria-hidden="true" />
+            <img src="Images/elements/hero-left-circuits.svg" alt="" class="decor-svg hero-circuit-right" aria-hidden="true" />
+            <!-- Add this file later when it is ready:
+            <img src="Images/elements/header-logo-circuit-halo.svg" alt="" class="decor-svg hero-logo-halo" aria-hidden="true" />
+            -->
             <div class="hero-inner">
                 <div class="hero-copy-block reveal visible">
                     <div class="hero-kicker">Student Organization</div>
@@ -1254,6 +1413,8 @@
         </main>
 
         <footer>
+            <img src="Images/elements/footer-left-circuits.svg" alt="" class="decor-svg footer-circuit-left" aria-hidden="true" />
+            <img src="Images/elements/footer-right-circuits.svg" alt="" class="decor-svg footer-circuit-right" aria-hidden="true" />
             <div class="footer-main">
                 <div class="footer-brand">
                     <img src="AI_Club_Logo.png" alt="Oregon Tech AI Club logo" />

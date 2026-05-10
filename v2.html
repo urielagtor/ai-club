@@ -26,7 +26,11 @@
       - Images/elements/hero-left-circuits.svg
       - Images/elements/footer-left-circuits.svg
       - Images/elements/footer-right-circuits.svg
-      - Images/elements/waves.png                  Background image behind the Join/Get Involved CTA section
+      - Images/elements/waves.png
+
+      IMPORTANT: use forward slashes in HTML/CSS paths, not backslashes.
+      Correct: Images/elements/waves.png
+      Incorrect: \Images\elements\waves.png                  Background image behind the Join/Get Involved CTA section
 
       Future optional element:
       - Images/elements/header-logo-circuit-halo.svg    Circuit halo behind the hero logo
@@ -882,6 +886,43 @@
                 z-index: 1;
             }
 
+
+        /* WAVES BACKGROUND FOR THE GET INVOLVED / RESOURCES CTA BAND */
+        .join-band {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(115deg, var(--navy-dark) 0%, var(--navy) 58%, #0b4c7c 100%);
+            isolation: isolate;
+        }
+
+            .join-band::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                z-index: 0;
+                pointer-events: none;
+                background-image: url("Images/elements/waves.png");
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+                opacity: .72;
+                mix-blend-mode: screen;
+            }
+
+            .join-band::after {
+                content: '';
+                position: absolute;
+                inset: 0;
+                z-index: 0;
+                pointer-events: none;
+                background: radial-gradient(circle at 50% 16%, rgba(248, 189, 34, .10), transparent 34%), linear-gradient(180deg, rgba(3, 23, 47, .08), rgba(3, 23, 47, .22));
+            }
+
+            .join-band .join-box {
+                position: relative;
+                z-index: 1;
+            }
+
         /* FOOTER */
         footer {
             background: var(--navy-dark);
@@ -1118,6 +1159,46 @@
                 flex-direction: column;
             }
         }
+
+
+        .join-band {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient( 115deg, rgba(3, 23, 47, .98) 0%, rgba(0, 55, 103, .94) 58%, rgba(11, 76, 124, .92) 100% );
+            isolation: isolate;
+        }
+
+            /* Waves image */
+            .join-band::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                z-index: 1;
+                pointer-events: none;
+                background-image: url("Images/elements/waves.png");
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+                opacity: .05;
+                mix-blend-mode: normal;
+            }
+
+            /* Optional very light overlay */
+            .join-band::after {
+                content: '';
+                position: absolute;
+                inset: 0;
+                z-index: 2;
+                pointer-events: none;
+                background: linear-gradient( 180deg, rgba(3, 23, 47, .02), rgba(3, 23, 47, .08) );
+            }
+
+            /* Content above everything */
+            .join-band .container,
+            .join-band .join-box {
+                position: relative;
+                z-index: 3;
+            }
     </style>
 </head>
 <body>
