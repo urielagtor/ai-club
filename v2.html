@@ -461,24 +461,40 @@
             place-items: center;
             aspect-ratio: 1;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(248,189,34,.28), rgba(248,189,34,.08) 42%, transparent 70%);
+            isolation: isolate;
+            background: transparent;
         }
 
+            /* Soft gold glow behind the logo */
             .hero-logo-card::before {
                 content: '';
                 position: absolute;
-                inset: 25px;
-                border: 1px solid rgba(248,189,34,.4);
+                inset: -10%;
+                z-index: -2;
                 border-radius: 50%;
-                box-shadow: 0 0 55px rgba(248,189,34,.42);
+                background: radial-gradient( circle, rgba(248, 189, 34, .42) 0%, rgba(248, 189, 34, .26) 24%, rgba(248, 189, 34, .12) 46%, rgba(248, 189, 34, .04) 64%, transparent 78% );
+                filter: blur(18px);
+            }
+
+            /* Crisp outer halo */
+            .hero-logo-card::after {
+                content: '';
+                position: absolute;
+                inset: 15%;
+                z-index: -1;
+                border-radius: 50%;
+                border: 2px solid rgba(248, 189, 34, .42);
+                box-shadow: 0 0 26px rgba(248, 189, 34, .40), 0 0 62px rgba(248, 189, 34, .28), 0 0 110px rgba(248, 189, 34, .16);
+                background: radial-gradient( circle, rgba(248, 189, 34, .10) 0%, rgba(248, 189, 34, .05) 44%, transparent 70% );
             }
 
             .hero-logo-card img {
                 position: relative;
-                width: min(340px, 82%);
+                z-index: 1;
+                width: min(330px, 80%);
                 height: auto;
                 border-radius: 50%;
-                filter: drop-shadow(0 24px 42px rgba(0,0,0,.35));
+                filter: drop-shadow(0 22px 34px rgba(0,0,0,.38)) drop-shadow(0 0 26px rgba(248,189,34,.32));
             }
 
         /* =========================================================
@@ -842,9 +858,10 @@
                 pointer-events: none;
                 background-image: url("Images/elements/waves.png");
                 background-repeat: no-repeat;
-                background-position: center;
+                background-position: center center;
                 background-size: cover;
-                opacity: .05;
+                opacity: .1;
+                mix-blend-mode: screen;
             }
 
             .cta-footer-wrap > section,
@@ -894,10 +911,10 @@
 
         footer {
             position: relative;
-            background: transparent;
+            overflow: hidden;
+            background: rgba(3, 23, 47, .34);
             color: #fff;
             overflow: hidden;
-            border-top: 1px solid rgba(255,255,255,.14);
         }
 
             footer::before {
@@ -906,7 +923,6 @@
                 inset: 0;
                 z-index: 0;
                 pointer-events: none;
-                background: rgba(3, 23, 47, .52);
             }
 
         .footer-circuit-left,
@@ -1313,7 +1329,7 @@
             }
 
                 .hero-logo-card::before {
-                    inset: 18px;
+                    inset: -8%;
                 }
 
             .hero-circuit-left,
