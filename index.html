@@ -24,11 +24,14 @@
       - Images/officers/drake-macias.jpg
 
       Decorative elements:
-      - Images/elements/stats-bg.png
+      - Images/elements/hero-left-circuits.svg
+      - Images/elements/footer-left-circuits.svg
+      - Images/elements/footer-right-circuits.svg
       - Images/elements/teal-hex-bg.png
       - Images/elements/polygon.svg
       - Images/elements/waves.png
       - Images/elements/hex-grad-15.png
+      - Images/elements/stats-bg.png (optional; not used by default because it has a hard blue rectangle)
 
       Use forward slashes in paths:
       Correct: Images/elements/stats-bg.png
@@ -714,15 +717,6 @@
                 position: absolute;
                 right: -120px;
                 top: 60px;
-                width: clamp(220px, 24vw, 420px);
-                height: clamp(220px, 24vw, 420px);
-                background-image: url("Images/elements/polygon.svg");
-                background-repeat: no-repeat;
-                background-size: contain;
-                background-position: center;
-                opacity: .08;
-                pointer-events: none;
-                z-index: 0;
             }
 
             .why-section .container {
@@ -744,10 +738,6 @@
             position: relative;
             overflow: hidden;
             isolation: isolate;
-            background: linear-gradient(180deg, rgba(238,245,251,.92) 0%, rgba(247,249,252,.86) 45%, rgba(255,255,255,.96) 100%);
-            background-repeat: no-repeat;
-            background-position: center bottom;
-            background-size: cover;
         }
 
             #events::before {
@@ -769,7 +759,6 @@
                 inset: 0;
                 z-index: 0;
                 pointer-events: none;
-                background: radial-gradient(circle at 12% 10%, rgba(248,189,34,.13), transparent 28%), radial-gradient(circle at 90% 18%, rgba(0,55,103,.12), transparent 30%), linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.46));
             }
 
             #events .container {
@@ -2188,6 +2177,1023 @@
             .footer-cta .btn {
                 width: auto;
                 justify-self: start;
+            }
+        }
+
+
+
+        /* =========================================================
+           BODY BACKGROUND REFINEMENT
+           Less white, more Oregon Tech-style layered blue/gray bands
+           Desktop header/footer layout remains unchanged
+        ========================================================= */
+
+        body,
+        .page-shell {
+            background: #eaf1f8;
+        }
+
+        .feature-strip {
+            background: linear-gradient(180deg, #eaf1f8 0%, #edf4fa 100%);
+        }
+
+        .about-band {
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+            background: radial-gradient(circle at 12% 20%, rgba(248,189,34,.10), transparent 28%), linear-gradient(135deg, #edf4fa 0%, #dfeaf4 50%, #eaf1f8 100%);
+            border-top: 1px solid rgba(0,55,103,.12);
+            border-bottom: 1px solid rgba(0,55,103,.12);
+        }
+
+            .about-band::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                z-index: 0;
+                pointer-events: none;
+                background-image: url("Images/elements/teal-hex-bg.png");
+                background-repeat: no-repeat;
+                background-position: right center;
+                background-size: cover;
+                opacity: .08;
+                mix-blend-mode: multiply;
+            }
+
+            .about-band .container {
+                position: relative;
+                z-index: 1;
+            }
+
+        .stat {
+            background: rgba(255,255,255,.74);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-color: rgba(0,55,103,.13);
+            box-shadow: 0 10px 26px rgba(8,31,61,.06);
+        }
+
+        .why-section {
+            background: radial-gradient(circle at 10% 20%, rgba(248,189,34,.16), transparent 30%), radial-gradient(circle at 92% 10%, rgba(0,55,103,.10), transparent 28%), linear-gradient(135deg, #f2f6fa 0%, #e6eff7 52%, #edf4fa 100%);
+        }
+
+        #events {
+            background: linear-gradient(180deg, rgba(226,237,247,.94) 0%, rgba(214,229,242,.94) 48%, rgba(232,240,248,.96) 100%) background-repeat: no-repeat;
+            background-position: bottom;
+            background-size: cover;
+        }
+
+            #events::before {
+                opacity: .28;
+                mix-blend-mode: multiply;
+            }
+
+            #events::after {
+                background: radial-gradient(circle at 12% 10%, rgba(248,189,34,.14), transparent 26%), radial-gradient(circle at 90% 18%, rgba(0,55,103,.13), transparent 30%), linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.26));
+            }
+
+        .feature-card,
+        .panel,
+        .project-card,
+        .leader-row,
+        .event-row {
+            background: rgba(255,255,255,.94);
+            border-color: rgba(0,55,103,.12);
+        }
+
+        .project-card,
+        .event-row,
+        .leader-row,
+        .panel,
+        .feature-card,
+        .stat {
+            box-shadow: 0 12px 30px rgba(8,31,61,.08);
+        }
+
+        @media (max-width: 760px) {
+            body,
+            .page-shell {
+                background: #eaf1f8;
+            }
+
+            .feature-strip {
+                background: linear-gradient(180deg, #eaf1f8 0%, #edf4fa 100%);
+            }
+
+            .about-band {
+                background: radial-gradient(circle at 8% 12%, rgba(248,189,34,.11), transparent 30%), linear-gradient(135deg, #edf4fa 0%, #dfeaf4 100%);
+            }
+
+                .about-band::before {
+                    background-position: center;
+                    opacity: .055;
+                }
+
+            .why-section {
+                background: radial-gradient(circle at 0% 8%, rgba(248,189,34,.15), transparent 30%), linear-gradient(135deg, #f2f6fa 0%, #e6eff7 100%);
+            }
+
+            #events {
+                background: linear-gradient(180deg, rgba(226,237,247,.96) 0%, rgba(214,229,242,.95) 48%, rgba(232,240,248,.97) 100%);
+                background-repeat: no-repeat;
+                background-position: center top;
+                background-size: cover;
+            }
+
+                #events::before {
+                    opacity: .22;
+                }
+        }
+
+
+
+        /* =========================================================
+           FINAL ELEMENT PLACEMENT SYSTEM
+           Uses each decorative asset intentionally:
+           - hero-left-circuits.svg: hero left accent
+           - teal-hex-bg.png: subtle body/about texture
+           - polygon.svg: number badges + Why Join accent
+           - waves.png: Explore section texture
+           - hex-grad-15.png: footer texture
+           - footer-left-circuits.svg / footer-right-circuits.svg: footer corner accents
+        ========================================================= */
+
+        body,
+        .page-shell {
+            background: #eef3f8;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: min(34vw, 520px);
+            height: auto;
+            z-index: 1;
+            pointer-events: none;
+            background-image: url("Images/elements/hero-left-circuits.svg");
+            background-repeat: no-repeat;
+            background-position: left center;
+            background-size: auto 104%;
+            opacity: .34;
+            transform: none;
+            transform-origin: center;
+            mix-blend-mode: screen;
+        }
+
+        .hero::after {
+            background: linear-gradient(90deg, rgba(0,55,103,.10) 0%, rgba(0,55,103,.06) 34%, rgba(0,55,103,0) 58%), radial-gradient(circle at 72% 42%, rgba(248,189,34,.18), transparent 28%), radial-gradient(circle at 18% 12%, rgba(255,255,255,.08), transparent 22%), linear-gradient(180deg, rgba(3,23,47,0) 0%, rgba(3,23,47,.22) 100%);
+        }
+
+        .feature-strip {
+            background: linear-gradient(180deg, rgba(238,243,248,0) 0%, #eef3f8 62%, #eef3f8 100%);
+        }
+
+        .about-band {
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+            background: linear-gradient(135deg, rgba(238,245,251,.96) 0%, rgba(221,232,242,.94) 100%);
+            border-top: 1px solid rgba(0,55,103,.12);
+            border-bottom: 1px solid rgba(0,55,103,.12);
+        }
+
+            .about-band::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                z-index: 0;
+                pointer-events: none;
+                background-repeat: no-repeat;
+                background-position: right bottom;
+                background-size: min(900px, 74vw) auto;
+                opacity: .12;
+                mix-blend-mode: multiply;
+            }
+
+            .about-band .container {
+                position: relative;
+                z-index: 1;
+            }
+
+        .stat,
+        .feature-card,
+        .panel,
+        .project-card,
+        .leader-row,
+        .event-row {
+            background: rgba(255,255,255,.96);
+        }
+
+        .why-section {
+            background: radial-gradient(circle at 8% 10%, rgba(248,189,34,.12), transparent 30%), radial-gradient(circle at 95% 20%, rgba(0,55,103,.08), transparent 34%), linear-gradient(135deg, #f2f6fa 0%, #e7eff6 100%);
+        }
+
+            .why-section::after {
+                opacity: .07;
+            }
+
+        #events {
+            background: linear-gradient(180deg, rgba(232,240,248,.94) 0%, rgba(221,233,244,.92) 100%);
+        }
+
+            #events::before {
+                background-image: url("Images/elements/waves.png");
+                background-repeat: no-repeat;
+                background-position: center top;
+                background-size: cover;
+                opacity: .30;
+                mix-blend-mode: multiply;
+            }
+
+            #events::after {
+                background: radial-gradient(circle at 12% 10%, rgba(248,189,34,.11), transparent 28%), radial-gradient(circle at 90% 18%, rgba(0,55,103,.10), transparent 30%), linear-gradient(180deg, rgba(255,255,255,.28), rgba(255,255,255,.46));
+            }
+
+        .cta-footer-wrap::before {
+            background-image: url("Images/elements/hex-grad-15.png");
+            opacity: .82;
+        }
+
+        footer::before,
+        footer::after {
+            content: '';
+            display: block;
+            position: absolute;
+            pointer-events: none;
+            z-index: 0;
+            opacity: .26;
+            background-repeat: no-repeat;
+            background-size: contain;
+            mix-blend-mode: screen;
+        }
+
+        footer::before {
+            left: -90px;
+            bottom: 0;
+            width: min(420px, 38vw);
+            height: min(420px, 38vw);
+            background-image: url("Images/elements/footer-left-circuits.svg");
+            background-position: left bottom;
+        }
+
+        footer::after {
+            right: -70px;
+            top: 20px;
+            width: min(380px, 34vw);
+            height: min(380px, 34vw);
+            background-image: url("Images/elements/footer-right-circuits.svg");
+            background-position: right top;
+        }
+
+        footer .footer-main,
+        footer .footer-bottom {
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 1050px) {
+            .hero::before {
+                width: 42vw;
+                opacity: .25;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .hero::before {
+                top: 0;
+                left: -24px;
+                bottom: 0;
+                width: 42vw;
+                height: auto;
+                background-size: auto 104%;
+                background-position: left center;
+                opacity: .20;
+                transform: none;
+            }
+
+            .about-band::before {
+                background-size: 650px auto;
+                background-position: right bottom;
+                opacity: .09;
+            }
+
+            #events::before {
+                opacity: .20;
+                background-size: auto 100%;
+                background-position: center top;
+            }
+
+            footer::before {
+                width: 190px;
+                height: 190px;
+                left: -70px;
+                opacity: .16;
+            }
+
+            footer::after {
+                width: 170px;
+                height: 170px;
+                right: -70px;
+                top: 40px;
+                opacity: .14;
+            }
+        }
+
+        @media (max-width: 430px) {
+            .hero::before {
+                left: -42px;
+                width: 54vw;
+                opacity: .18;
+            }
+
+            .hero-ctas {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+
+        /* =========================================================
+           FINAL USER REQUEST OVERRIDES
+           - Use waves in the hero instead of circuits
+           - Extend teal-hex-bg beyond 100% height so the slanted bottom shows
+           - Remove footer circuit accents
+        ========================================================= */
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -310px;
+            bottom: auto;
+            /* Width becomes the visual height after rotate(90deg) */
+            width: 820px;
+            height: 360px;
+            z-index: 1;
+            pointer-events: none;
+            background-image: url("Images/elements/waves.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            opacity: .30;
+            transform: translateY(-50%) rotate(90deg);
+            transform-origin: center;
+            mix-blend-mode: normal;
+        }
+
+        .about-band {
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+            background: linear-gradient(135deg, rgba(238,245,251,.96) 0%, rgba(221,235,246,.92) 100%);
+        }
+
+            .about-band::before {
+                content: '';
+                position: absolute;
+                top: -60px;
+                right: 0;
+                bottom: -150px;
+                width: 52%;
+                height: auto;
+                z-index: 0;
+                pointer-events: none;
+                background-image: linear-gradient(90deg, rgba(238,245,251,.88) 0%, rgba(238,245,251,.34) 38%, rgba(238,245,251,0) 100%);
+                background-repeat: no-repeat;
+                background-position: center bottom;
+                background-size: cover;
+                opacity: .78;
+                mix-blend-mode: normal;
+            }
+
+            .about-band::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: -1px;
+                height: 120px;
+                z-index: 0;
+                pointer-events: none;
+                background: linear-gradient(180deg, rgba(238,245,251,0) 0%, rgba(238,245,251,.72) 72%, rgba(238,245,251,.96) 100%);
+            }
+
+            .about-band .container {
+                position: relative;
+                z-index: 1;
+            }
+
+        footer::before,
+        footer::after,
+        .footer-circuit-left,
+        .footer-circuit-right,
+        .footer-left-circuits,
+        .footer-right-circuits,
+        .cta-footer-wrap .decor-svg,
+        footer .decor-svg {
+            content: none !important;
+            display: none !important;
+            background-image: none !important;
+        }
+
+        .cta-footer-wrap::before {
+            background-image: url("Images/elements/hex-grad-15.png") !important;
+            background-repeat: repeat-x !important;
+            background-position: bottom center !important;
+            background-size: auto !important;
+            opacity: .82 !important;
+        }
+
+        .cta-footer-wrap::after {
+            background: radial-gradient(circle at 18% 30%, rgba(248,189,34,.10), transparent 28%), radial-gradient(circle at 82% 18%, rgba(255,255,255,.08), transparent 24%) !important;
+        }
+
+        @media (max-width: 1050px) {
+            .hero::before {
+                left: -300px;
+                width: 760px;
+                height: 330px;
+                opacity: .24;
+                transform: translateY(-50%) rotate(90deg);
+            }
+        }
+
+        @media (max-width: 760px) {
+            .hero::before {
+                top: 44%;
+                left: -285px;
+                bottom: auto;
+                width: 650px;
+                height: 270px;
+                background-size: contain;
+                background-position: center;
+                opacity: .18;
+                transform: translateY(-50%) rotate(90deg);
+            }
+
+            .about-band::before {
+                top: auto;
+                left: 0;
+                right: 0;
+                bottom: -120px;
+                width: 100%;
+                height: 390px;
+                background-position: center bottom;
+                background-size: cover;
+                opacity: .36;
+            }
+
+            .about-band::after {
+                height: 105px;
+            }
+        }
+
+        @media (max-width: 430px) {
+            .hero::before {
+                left: -310px;
+                width: 600px;
+                height: 250px;
+                opacity: .16;
+            }
+
+            .about-band::before {
+                bottom: -105px;
+                height: 340px;
+                opacity: .30;
+            }
+        }
+
+
+        /* =========================================================
+           FINAL ABOUT BACKGROUND + MOBILE OPTIMIZATION
+           Uses teal-hex-bg.png as the exact section background.
+           No overlays, no pseudo-element filters, no card behind text.
+        ========================================================= */
+
+        .about-band {
+            position: relative !important;
+            overflow: hidden !important;
+            isolation: auto !important;
+            background-repeat: no-repeat !important;
+            background-position: center center !important;
+            background-size: 100% 100% !important;
+            border-top: 1px solid rgba(0,55,103,.12) !important;
+            border-bottom: 1px solid rgba(0,55,103,.12) !important;
+            padding-top: 7.25rem !important;
+            padding-bottom: 7.25rem !important;
+        }
+
+            .about-band::before,
+            .about-band::after {
+                content: none !important;
+                display: none !important;
+                background: none !important;
+                background-image: none !important;
+                opacity: 0 !important;
+            }
+
+            .about-band .container,
+            .about-layout,
+            .about-band .stats-grid,
+            .about-band .stat {
+                position: relative !important;
+                z-index: 1 !important;
+            }
+
+                .about-layout > div:first-child {
+                    background: transparent !important;
+                    border: 0 !important;
+                    border-radius: 0 !important;
+                    box-shadow: none !important;
+                    padding: 0 !important;
+                    max-width: 760px;
+                }
+
+            .about-band .section-eyebrow {
+                color: var(--gold) !important;
+                text-shadow: 0 2px 8px rgba(0,55,103,.55) !important;
+            }
+
+            .about-band h2 {
+                color: #ffffff !important;
+                text-shadow: 0 3px 14px rgba(0,55,103,.58) !important;
+            }
+
+            .about-band p {
+                color: rgba(255,255,255,.95) !important;
+                font-weight: 600 !important;
+                text-shadow: 0 2px 10px rgba(0,55,103,.58) !important;
+            }
+
+            .about-band .stat {
+                background: rgba(255,255,255,.94) !important;
+                border: 1px solid rgba(255,255,255,.74) !important;
+                box-shadow: 0 16px 38px rgba(0,55,103,.18) !important;
+            }
+
+                .about-band .stat strong {
+                    color: var(--navy) !important;
+                    text-shadow: none !important;
+                }
+
+                .about-band .stat span {
+                    color: #52677f !important;
+                    text-shadow: none !important;
+                }
+
+        @media (max-width: 1050px) {
+            .about-band {
+                padding-top: 5.75rem !important;
+                padding-bottom: 5.75rem !important;
+            }
+
+            .about-layout {
+                gap: 2rem !important;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .about-band {
+                background-image: url("Images/elements/teal-hex-bg.png") !important;
+                background-repeat: no-repeat !important;
+                background-position: center center !important;
+                background-size: 100% 100% !important;
+                padding-top: 3.5rem !important;
+                padding-bottom: 3.75rem !important;
+            }
+
+            .about-layout {
+                display: grid !important;
+                grid-template-columns: 1fr !important;
+                gap: 1.35rem !important;
+                align-items: start !important;
+            }
+
+                .about-layout > div:first-child {
+                    background: transparent !important;
+                    border: 0 !important;
+                    border-radius: 0 !important;
+                    box-shadow: none !important;
+                    padding: 0 !important;
+                }
+
+            .about-band .section-eyebrow {
+                font-size: .64rem !important;
+                margin-bottom: .5rem !important;
+            }
+
+            .about-band h2 {
+                font-size: clamp(1.9rem, 9vw, 2.55rem) !important;
+                line-height: 1.04 !important;
+                max-width: 12ch;
+            }
+
+            .about-band p {
+                font-size: .86rem !important;
+                line-height: 1.55 !important;
+                max-width: 100% !important;
+            }
+
+            .about-band .stats-grid {
+                display: grid !important;
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                gap: .7rem !important;
+            }
+
+            .about-band .stat {
+                min-height: 112px !important;
+                padding: .95rem !important;
+                border-radius: 15px !important;
+            }
+
+                .about-band .stat strong {
+                    font-size: 1.08rem !important;
+                    line-height: 1.1 !important;
+                }
+
+                .about-band .stat span {
+                    font-size: .68rem !important;
+                    line-height: 1.35 !important;
+                }
+        }
+
+        @media (max-width: 430px) {
+            .about-band {
+                padding-top: 3rem !important;
+                padding-bottom: 3.25rem !important;
+            }
+
+                .about-band h2 {
+                    font-size: clamp(1.72rem, 9.5vw, 2.2rem) !important;
+                    max-width: 13ch;
+                }
+
+                .about-band p {
+                    font-size: .8rem !important;
+                }
+
+                .about-band .stats-grid {
+                    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                    gap: .65rem !important;
+                }
+
+                .about-band .stat {
+                    min-height: 104px !important;
+                    padding: .8rem !important;
+                }
+        }
+
+
+
+
+        /* =========================================================
+           FINAL OVERRIDE — MOVE TEAL HEX BACKGROUND TO WHY JOIN
+           - About returns to a clean light body section
+           - Why Join uses teal-hex-bg.png as the full section background
+           - Mobile readability and 2x2 grids preserved
+        ========================================================= */
+
+        .about-band {
+            position: relative !important;
+            overflow: hidden !important;
+            isolation: isolate !important;
+            background: linear-gradient(135deg, #eef5fb 0%, #e4eef7 100%) !important;
+            background-image: linear-gradient(135deg, #eef5fb 0%, #e4eef7 100%) !important;
+            border-top: 1px solid rgba(0,55,103,.12) !important;
+            border-bottom: 1px solid rgba(0,55,103,.12) !important;
+            padding-top: 5.75rem !important;
+            padding-bottom: 5.75rem !important;
+        }
+
+            .about-band::before,
+            .about-band::after {
+                content: none !important;
+                display: none !important;
+                background: none !important;
+                background-image: none !important;
+                opacity: 0 !important;
+            }
+
+        .about-layout > div:first-child {
+            background: transparent !important;
+            border: 0 !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            max-width: 760px !important;
+        }
+
+        .about-band .section-eyebrow {
+            color: var(--gold-deep) !important;
+            text-shadow: none !important;
+        }
+
+        .about-band h2 {
+            color: var(--navy-dark) !important;
+            text-shadow: none !important;
+        }
+
+        .about-band p {
+            color: #425a73 !important;
+            font-weight: 500 !important;
+            text-shadow: none !important;
+        }
+
+        .about-band .stat {
+            background: rgba(255,255,255,.92) !important;
+            border: 1px solid rgba(0,55,103,.10) !important;
+            box-shadow: 0 14px 34px rgba(0,55,103,.10) !important;
+        }
+
+            .about-band .stat strong {
+                color: var(--navy) !important;
+                text-shadow: none !important;
+            }
+
+            .about-band .stat span {
+                color: #52677f !important;
+                text-shadow: none !important;
+            }
+
+        .why-section {
+            position: relative !important;
+            overflow: hidden !important;
+            isolation: isolate !important;
+            background-image: url("Images/elements/teal-hex-bg.png") !important;
+            background-repeat: no-repeat !important;
+            background-position: top !important;
+            padding-top: 6.5rem !important;
+            padding-bottom: 6.25rem !important;
+        }
+
+            .why-section::before {
+                content: '' !important;
+                position: absolute !important;
+                inset: 0 !important;
+                z-index: 0 !important;
+                pointer-events: none !important;
+                background: linear-gradient(90deg, rgba(0,55,103,.06) 0%, rgba(0,55,103,0) 46%, rgba(0,55,103,.04) 100%) !important;
+            }
+
+            .why-section::after {
+                display: none !important;
+                content: none !important;
+                background: none !important;
+                background-image: none !important;
+                opacity: 0 !important;
+            }
+
+            .why-section .container {
+                position: relative !important;
+                z-index: 1 !important;
+            }
+
+            .why-section .section-eyebrow {
+                color: var(--gold) !important;
+                text-shadow: 0 2px 8px rgba(0,55,103,.42) !important;
+            }
+
+            .why-section h2 {
+                color: #fff !important;
+                text-shadow: 0 3px 14px rgba(0,55,103,.50) !important;
+            }
+
+            .why-section .section-heading p {
+                color: rgba(255,255,255,.94) !important;
+                font-weight: 600 !important;
+                text-shadow: 0 2px 10px rgba(0,55,103,.46) !important;
+            }
+
+            .why-section .feature-card {
+                background: rgba(255,255,255,.94) !important;
+                border: 1px solid rgba(255,255,255,.72) !important;
+                box-shadow: 0 16px 38px rgba(0,55,103,.18) !important;
+            }
+
+                .why-section .feature-card h3 {
+                    color: var(--navy-dark) !important;
+                }
+
+                .why-section .feature-card p {
+                    color: #4f647c !important;
+                    text-shadow: none !important;
+                    font-weight: 500 !important;
+                }
+
+        @media (max-width: 1050px) {
+            .about-band {
+                padding-top: 5rem !important;
+                padding-bottom: 5rem !important;
+            }
+
+            .why-section {
+                padding-top: 5.75rem !important;
+                padding-bottom: 5.75rem !important;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .about-band {
+                padding-top: 3.5rem !important;
+                padding-bottom: 3.5rem !important;
+            }
+
+            .why-section {
+                background-position: bottom center !important;
+                background-size: 100% 100% !important;
+                padding-top: 3.75rem !important;
+                padding-bottom: 4.25rem !important;
+            }
+
+                .why-section::before {
+                    background: linear-gradient(180deg, rgba(0,55,103,.08) 0%, rgba(0,55,103,.02) 100%) !important;
+                }
+
+                .why-section .section-heading {
+                    margin-bottom: 1.15rem !important;
+                }
+
+                    .why-section .section-heading p {
+                        font-size: .84rem !important;
+                        line-height: 1.55 !important;
+                    }
+
+                .why-section .feature-grid {
+                    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                    gap: .75rem !important;
+                }
+
+                .why-section .feature-card {
+                    min-height: 132px !important;
+                    padding: .85rem .7rem !important;
+                    text-align: center !important;
+                    justify-items: center !important;
+                    align-items: center !important;
+                }
+        }
+
+        @media (max-width: 430px) {
+            .why-section {
+                padding-top: 3.25rem !important;
+                padding-bottom: 3.75rem !important;
+                background-size: auto 100% !important;
+            }
+
+                .why-section .feature-grid {
+                    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                    gap: .65rem !important;
+                }
+
+                .why-section .feature-card {
+                    grid-template-columns: 1fr !important;
+                    min-height: 124px !important;
+                    padding: .75rem .55rem !important;
+                    text-align: center !important;
+                }
+
+                    .why-section .feature-card h3 {
+                        font-size: .70rem !important;
+                        line-height: 1.15 !important;
+                    }
+
+                    .why-section .feature-card p {
+                        font-size: .58rem !important;
+                        line-height: 1.32 !important;
+                    }
+        }
+
+
+
+        /* =========================================================
+           FINAL WHY JOIN TEAL BACKGROUND FIX
+           - Moves/keeps teal-hex-bg on Why Join only
+           - Prevents vertical squish on desktop
+           - Prevents horizontal squish on mobile
+           - Keeps the image proportional at every breakpoint
+        ========================================================= */
+
+        .about-band {
+            background: linear-gradient(135deg, rgba(238,245,251,.96) 0%, rgba(221,232,242,.94) 100%) !important;
+        }
+
+            .about-band::before,
+            .about-band::after {
+                display: none !important;
+                content: none !important;
+                background: none !important;
+                background-image: none !important;
+                opacity: 0 !important;
+            }
+
+        .why-section {
+            position: relative !important;
+            overflow: hidden !important;
+            isolation: isolate !important;
+            background-image: url("Images/elements/teal-hex-bg.png") !important;
+            background-repeat: no-repeat !important;
+            background-position: center bottom !important;
+            background-size: cover !important;
+            min-height: 560px !important;
+            padding-top: 7rem !important;
+            padding-bottom: 7rem !important;
+        }
+
+            .why-section::before,
+            .why-section::after {
+                display: none !important;
+                content: none !important;
+                background: none !important;
+                background-image: none !important;
+                opacity: 0 !important;
+            }
+
+            .why-section .container,
+            .why-section .section-heading,
+            .why-section .feature-grid,
+            .why-section .feature-card {
+                position: relative !important;
+                z-index: 1 !important;
+            }
+
+            .why-section .section-heading {
+                max-width: 760px;
+            }
+
+            .why-section .section-eyebrow {
+                color: var(--gold) !important;
+                text-shadow: 0 2px 8px rgba(0,55,103,.42) !important;
+            }
+
+            .why-section h2 {
+                color: #ffffff !important;
+                text-shadow: 0 3px 14px rgba(0,55,103,.48) !important;
+            }
+
+            .why-section .section-heading p {
+                color: rgba(255,255,255,.94) !important;
+                text-shadow: 0 2px 9px rgba(0,55,103,.38) !important;
+                font-weight: 500 !important;
+            }
+
+            .why-section .feature-card {
+                background: rgba(255,255,255,.95) !important;
+                border: 1px solid rgba(255,255,255,.76) !important;
+                box-shadow: 0 16px 38px rgba(0,55,103,.18) !important;
+            }
+
+                .why-section .feature-card h3 {
+                    color: var(--navy-dark) !important;
+                }
+
+                .why-section .feature-card p {
+                    color: var(--muted) !important;
+                    text-shadow: none !important;
+                }
+
+        @media (max-width: 1050px) {
+            .why-section {
+                min-height: 500px !important;
+                background-size: cover !important;
+                background-position: center bottom !important;
+                padding-top: 5.25rem !important;
+                padding-bottom: 5.25rem !important;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .why-section {
+                min-height: auto !important;
+                background-size: auto 100% !important;
+                background-position: center bottom !important;
+                padding-top: 3.75rem !important;
+                padding-bottom: 3.75rem !important;
+            }
+
+                .why-section .section-heading {
+                    max-width: none !important;
+                    text-align: left !important;
+                    margin-bottom: 1.25rem !important;
+                }
+
+                .why-section h2 {
+                    font-size: clamp(1.75rem, 8vw, 2.25rem) !important;
+                    line-height: 1.05 !important;
+                }
+
+                .why-section .section-heading p {
+                    font-size: .86rem !important;
+                    line-height: 1.55 !important;
+                }
+        }
+
+        @media (max-width: 430px) {
+            .why-section {
+                background-size: auto 100% !important;
+                background-position: center bottom !important;
+                padding-top: 3.25rem !important;
+                padding-bottom: 3.25rem !important;
             }
         }
     </style>
