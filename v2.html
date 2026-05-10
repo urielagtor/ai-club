@@ -14,6 +14,9 @@
 
       Optional but recommended:
       - Images/hero-campus.jpg                         Hero background image of Oregon Tech/Klamath Falls
+
+      No extra image files are needed for the header/footer circuit graphics.
+      They are generated directly in CSS using embedded SVG data URIs.
       - Images/project-neural-network.jpg              Project card image
       - Images/project-study-buddy.jpg                 Project card image
       - Images/project-drone-vision.jpg                Project card image
@@ -56,6 +59,9 @@
             --shadow-md: 0 12px 34px rgba(8, 31, 61, .14);
             --shadow-gold: 0 10px 30px rgba(248, 189, 34, .26);
             --max: 1220px;
+            /* CSS-generated circuit artwork. No separate image files required. */
+            --circuit-gold: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='360' viewBox='0 0 520 360'%3E%3Cg fill='none' stroke='%23f8bd22' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' opacity='.9'%3E%3Cpath d='M20 48H96l34 34h78l26-26h96l40 40h130'/%3E%3Cpath d='M20 116h88l30 30h122l28-28h84l38 38h90'/%3E%3Cpath d='M20 184h70l42-42h56l36 36h94l36-36h146'/%3E%3Cpath d='M20 252h114l34-34h76l40 40h84l34-34h98'/%3E%3Cpath d='M20 316h74l46-46h80l36 36h124l34-34h86'/%3E%3Cpath d='M98 48v44M208 82v42M330 56v60M90 184v-56M188 142v-48M318 178v58M244 218v64M380 306v-52M140 270v-62'/%3E%3C/g%3E%3Cg fill='%23f8bd22' opacity='.95'%3E%3Ccircle cx='20' cy='48' r='5'/%3E%3Ccircle cx='96' cy='48' r='5'/%3E%3Ccircle cx='208' cy='82' r='5'/%3E%3Ccircle cx='330' cy='56' r='5'/%3E%3Ccircle cx='500' cy='96' r='5'/%3E%3Ccircle cx='20' cy='116' r='5'/%3E%3Ccircle cx='260' cy='146' r='5'/%3E%3Ccircle cx='372' cy='118' r='5'/%3E%3Ccircle cx='500' cy='156' r='5'/%3E%3Ccircle cx='20' cy='184' r='5'/%3E%3Ccircle cx='188' cy='142' r='5'/%3E%3Ccircle cx='318' cy='178' r='5'/%3E%3Ccircle cx='500' cy='142' r='5'/%3E%3Ccircle cx='20' cy='252' r='5'/%3E%3Ccircle cx='244' cy='218' r='5'/%3E%3Ccircle cx='368' cy='258' r='5'/%3E%3Ccircle cx='500' cy='224' r='5'/%3E%3Ccircle cx='20' cy='316' r='5'/%3E%3Ccircle cx='220' cy='270' r='5'/%3E%3Ccircle cx='380' cy='306' r='5'/%3E%3Ccircle cx='500' cy='272' r='5'/%3E%3C/g%3E%3C/svg%3E");
+            --circuit-blue: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='360' viewBox='0 0 520 360'%3E%3Cg fill='none' stroke='%235aa6d8' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round' opacity='.55'%3E%3Cpath d='M18 70h88l36 36h78l28-28h86l40 40h128'/%3E%3Cpath d='M18 138h92l30 30h126l30-30h76l42 42h88'/%3E%3Cpath d='M18 206h82l38-38h66l32 32h94l38-38h134'/%3E%3Cpath d='M18 274h116l34-34h74l36 36h88l36-36h100'/%3E%3Cpath d='M106 70v48M220 106v44M334 78v64M100 206v-52M204 168v-42M330 200v58M242 240v58M366 276v-52'/%3E%3C/g%3E%3Cg fill='%235aa6d8' opacity='.65'%3E%3Ccircle cx='18' cy='70' r='4'/%3E%3Ccircle cx='106' cy='70' r='4'/%3E%3Ccircle cx='220' cy='106' r='4'/%3E%3Ccircle cx='334' cy='78' r='4'/%3E%3Ccircle cx='502' cy='118' r='4'/%3E%3Ccircle cx='18' cy='138' r='4'/%3E%3Ccircle cx='266' cy='168' r='4'/%3E%3Ccircle cx='372' cy='138' r='4'/%3E%3Ccircle cx='502' cy='180' r='4'/%3E%3Ccircle cx='18' cy='206' r='4'/%3E%3Ccircle cx='204' cy='168' r='4'/%3E%3Ccircle cx='330' cy='200' r='4'/%3E%3Ccircle cx='502' cy='162' r='4'/%3E%3Ccircle cx='18' cy='274' r='4'/%3E%3Ccircle cx='242' cy='240' r='4'/%3E%3Ccircle cx='366' cy='276' r='4'/%3E%3Ccircle cx='502' cy='240' r='4'/%3E%3C/g%3E%3C/svg%3E");
         }
 
         html {
@@ -270,26 +276,29 @@
                 content: '';
                 position: absolute;
                 pointer-events: none;
-                opacity: .62;
-                background-image: linear-gradient(90deg, transparent 0 20px, rgba(248,189,34,.72) 20px 22px, transparent 22px), radial-gradient(circle at center, rgba(248,189,34,.9) 0 3px, transparent 4px);
-                background-size: 180px 70px, 90px 70px;
+                z-index: 1;
+                width: min(42vw, 560px);
+                height: 390px;
+                opacity: .9;
+                background-image: var(--circuit-blue), var(--circuit-gold);
+                background-repeat: no-repeat;
+                background-size: 100% 100%, 92% 88%;
+                background-position: center, center;
+                filter: drop-shadow(0 0 16px rgba(248, 189, 34, .18));
+                mix-blend-mode: screen;
             }
 
             .hero::before {
-                width: 360px;
-                height: 360px;
-                left: -110px;
-                top: 70px;
-                transform: rotate(0deg);
+                left: -125px;
+                top: 86px;
             }
 
             .hero::after {
-                width: 520px;
-                height: 420px;
-                right: -90px;
-                top: 70px;
-                transform: rotate(180deg);
+                right: -125px;
+                top: 86px;
+                transform: scaleX(-1);
             }
+
 
         .hero-inner {
             position: relative;
@@ -799,23 +808,29 @@
             footer::after {
                 content: '';
                 position: absolute;
-                width: 290px;
-                height: 180px;
-                opacity: .32;
-                background-image: linear-gradient(90deg, transparent 0 22px, rgba(248,189,34,.7) 22px 24px, transparent 24px), radial-gradient(circle, var(--gold) 0 2px, transparent 2.5px);
-                background-size: 120px 42px, 60px 42px;
+                pointer-events: none;
+                z-index: 1;
+                width: 360px;
+                height: 230px;
+                opacity: .52;
+                background-image: var(--circuit-gold), var(--circuit-blue);
+                background-repeat: no-repeat;
+                background-size: 100% 100%, 92% 88%;
+                background-position: center, center;
+                filter: drop-shadow(0 0 12px rgba(248, 189, 34, .18));
             }
 
             footer::before {
-                left: -70px;
-                top: 40px;
+                left: -122px;
+                top: 42px;
             }
 
             footer::after {
-                right: -80px;
-                top: 40px;
-                transform: rotate(180deg);
+                right: -122px;
+                top: 42px;
+                transform: scaleX(-1);
             }
+
 
         .footer-main {
             position: relative;
@@ -1297,40 +1312,40 @@
     </div>
 
     <script>
-    function toggleNav() {
-      const links = document.getElementById('navLinks');
-      const hamburger = document.getElementById('hamburger');
-      const isOpen = links.classList.toggle('open');
-      hamburger.classList.toggle('open', isOpen);
-      hamburger.setAttribute('aria-expanded', String(isOpen));
-    }
+        function toggleNav() {
+            const links = document.getElementById('navLinks');
+            const hamburger = document.getElementById('hamburger');
+            const isOpen = links.classList.toggle('open');
+            hamburger.classList.toggle('open', isOpen);
+            hamburger.setAttribute('aria-expanded', String(isOpen));
+        }
 
-    document.querySelectorAll('#navLinks a').forEach(link => {
-      link.addEventListener('click', () => {
-        const links = document.getElementById('navLinks');
-        const hamburger = document.getElementById('hamburger');
-        links.classList.remove('open');
-        hamburger.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
-      });
-    });
+        document.querySelectorAll('#navLinks a').forEach(link => {
+            link.addEventListener('click', () => {
+                const links = document.getElementById('navLinks');
+                const hamburger = document.getElementById('hamburger');
+                links.classList.remove('open');
+                hamburger.classList.remove('open');
+                hamburger.setAttribute('aria-expanded', 'false');
+            });
+        });
 
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.12 });
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.12 });
 
-    document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
+        document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
 
-    function handleSubscribe(event) {
-      event.preventDefault();
-      const button = event.currentTarget.querySelector('button');
-      const input = event.currentTarget.querySelector('input');
-      button.textContent = 'Subscribed!';
-      button.disabled = true;
-      input.disabled = true;
-    }
+        function handleSubscribe(event) {
+            event.preventDefault();
+            const button = event.currentTarget.querySelector('button');
+            const input = event.currentTarget.querySelector('input');
+            button.textContent = 'Subscribed!';
+            button.disabled = true;
+            input.disabled = true;
+        }
     </script>
 </body>
 </html>
