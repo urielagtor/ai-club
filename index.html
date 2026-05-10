@@ -6,7 +6,8 @@
     <title>Oregon Tech AI Club | Where AI Meets Cybersecurity and IT</title>
     <link rel="icon" type="image/png" href="AI_Club_Logo.png" />
     <link rel="apple-touch-icon" href="AI_Club_Logo.png" />
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
     <style>
         *, *::before, *::after {
             box-sizing: border-box;
@@ -16,13 +17,21 @@
 
         :root {
             --navy: #0d2545;
-            --blue: #1a3a6b;
-            --gold: #f5b80e;
-            --gold2: #d49a08;
-            --white: #f0f4ff;
-            --muted: #8ca0bb;
-            --card: #122040;
-            --border: rgba(245,184,14,.18);
+            --navy-mid: #1a3a6b;
+            --gold: #b07d0a;
+            --gold-light: #f5b80e;
+            --gold-bg: #fdf6e3;
+            --white: #ffffff;
+            --bg: #f7f8fa;
+            --text: #1a1f2e;
+            --text-mid: #4a5568;
+            --text-light: #718096;
+            --border: #e2e8f0;
+            --card-bg: #ffffff;
+            --radius: 10px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+            --shadow-md: 0 4px 14px rgba(0,0,0,.08);
+            --shadow-lg: 0 10px 32px rgba(0,0,0,.1);
         }
 
         html {
@@ -30,33 +39,40 @@
         }
 
         body {
-            background: var(--navy);
-            color: var(--white);
-            font-family: 'DM Sans', sans-serif;
+            background: var(--white);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-            /* ── NOISE OVERLAY ── */
-            body::before {
-                content: '';
-                position: fixed;
-                inset: 0;
-                background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-                pointer-events: none;
-                z-index: 0;
-                opacity: .4;
-            }
+        /* ── TYPOGRAPHY ── */
+        h1, h2, h3 {
+            font-family: 'Sora', sans-serif;
+            line-height: 1.15;
+            color: var(--text);
+        }
 
-            /* ── CIRCUIT GRID BG ── */
-            body::after {
-                content: '';
-                position: fixed;
-                inset: 0;
-                background-image: linear-gradient(rgba(245,184,14,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(245,184,14,.04) 1px, transparent 1px);
-                background-size: 48px 48px;
-                pointer-events: none;
-                z-index: 0;
-            }
+        h1 {
+            font-size: clamp(2.1rem, 5vw, 3.5rem);
+            font-weight: 800;
+        }
+
+        h2 {
+            font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        p {
+            color: var(--text-mid);
+            line-height: 1.7;
+        }
 
         /* ── NAV ── */
         nav {
@@ -68,190 +84,252 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 1rem 3rem;
-            background: rgba(13,37,69,.85);
-            backdrop-filter: blur(14px);
+            padding: .9rem 2.5rem;
+            background: rgba(255,255,255,.97);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
         }
 
         .nav-logo {
             display: flex;
             align-items: center;
-            gap: .75rem;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1rem;
-            font-weight: 800;
-            color: var(--gold);
-            letter-spacing: .08em;
+            gap: .6rem;
+            font-family: 'Sora', sans-serif;
+            font-size: .95rem;
+            font-weight: 700;
+            color: var(--navy);
             text-decoration: none;
         }
 
             .nav-logo img {
-                height: 38px;
-                width: 38px;
+                height: 34px;
+                width: 34px;
                 border-radius: 50%;
             }
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 2rem;
             list-style: none;
+            align-items: center;
         }
 
             .nav-links a {
-                color: var(--muted);
+                color: var(--text-mid);
                 text-decoration: none;
-                font-size: .85rem;
+                font-size: .875rem;
                 font-weight: 500;
-                letter-spacing: .06em;
-                text-transform: uppercase;
                 transition: color .2s;
             }
 
                 .nav-links a:hover {
-                    color: var(--gold);
+                    color: var(--navy);
                 }
+
+        .nav-cta {
+            background: var(--navy) !important;
+            color: #fff !important;
+            padding: .45rem 1.1rem;
+            border-radius: 6px;
+            font-size: .82rem !important;
+            font-weight: 600 !important;
+            transition: background .2s !important;
+        }
+
+            .nav-cta:hover {
+                background: var(--navy-mid) !important;
+            }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+            .hamburger span {
+                width: 22px;
+                height: 2px;
+                background: var(--navy);
+                border-radius: 2px;
+                transition: all .25s;
+                display: block;
+            }
+
+            .hamburger.open span:nth-child(1) {
+                transform: translateY(7px) rotate(45deg);
+            }
+
+            .hamburger.open span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.open span:nth-child(3) {
+                transform: translateY(-7px) rotate(-45deg);
+            }
 
         /* ── HERO ── */
         #hero {
-            position: relative;
-            z-index: 1;
+            background: var(--navy);
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 8rem 2rem 4rem;
+            padding: 7rem 2.5rem 5rem;
+            position: relative;
             overflow: hidden;
         }
 
-            /* Radial glow behind logo */
             #hero::before {
                 content: '';
                 position: absolute;
-                width: 600px;
-                height: 600px;
-                background: radial-gradient(circle, rgba(245,184,14,.12) 0%, transparent 70%);
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -55%);
+                inset: 0;
+                background: radial-gradient(ellipse 65% 55% at 65% 50%, rgba(245,184,14,.07) 0%, transparent 65%);
                 pointer-events: none;
             }
 
-        .hero-badge {
-            display: inline-flex;
+        .hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 4rem;
             align-items: center;
-            gap: .5rem;
-            background: rgba(245,184,14,.1);
-            border: 1px solid var(--border);
-            border-radius: 999px;
-            padding: .35rem 1rem;
-            font-size: .75rem;
-            letter-spacing: .12em;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 2rem;
-            animation: fadeDown .8s ease both;
         }
 
-            .hero-badge span {
+        .hero-text {
+            max-width: 560px;
+        }
+
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: .45rem;
+            background: rgba(245,184,14,.1);
+            border: 1px solid rgba(245,184,14,.22);
+            color: #f5c842;
+            border-radius: 999px;
+            padding: .3rem .9rem;
+            font-size: .75rem;
+            font-weight: 600;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            animation: fadeUp .7s ease both;
+        }
+
+            .hero-tag .dot {
                 width: 6px;
                 height: 6px;
-                background: var(--gold);
+                background: #f5c842;
                 border-radius: 50%;
                 animation: pulse 2s infinite;
             }
 
-        .hero-logo {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            border: 3px solid var(--gold);
-            box-shadow: 0 0 40px rgba(245,184,14,.25), 0 0 80px rgba(245,184,14,.1);
-            margin-bottom: 2.5rem;
-            animation: fadeUp .9s .1s ease both, rotateSlow 30s linear infinite;
+        #hero h1 {
+            color: #fff;
+            margin-bottom: 1.25rem;
+            animation: fadeUp .7s .1s ease both;
         }
 
-        h1 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(2.2rem, 6vw, 4.5rem);
-            font-weight: 900;
-            line-height: 1.05;
-            letter-spacing: -.01em;
-            animation: fadeUp .9s .2s ease both;
-        }
-
-            h1 span {
-                color: var(--gold);
+            #hero h1 em {
+                color: var(--gold-light);
+                font-style: normal;
             }
 
-        .hero-sub {
-            margin-top: 1.25rem;
-            max-width: 540px;
-            font-size: 1.1rem;
-            font-weight: 300;
-            color: var(--muted);
-            line-height: 1.7;
-            animation: fadeUp .9s .3s ease both;
+        #hero .hero-sub {
+            color: rgba(255,255,255,.62);
+            font-size: 1.05rem;
+            max-width: 470px;
+            margin-bottom: 2.25rem;
+            animation: fadeUp .7s .2s ease both;
         }
 
         .hero-ctas {
             display: flex;
-            gap: 1rem;
+            gap: .875rem;
             flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 2.5rem;
-            animation: fadeUp .9s .4s ease both;
+            animation: fadeUp .7s .3s ease both;
         }
 
+        .hero-logo-wrap {
+            animation: fadeUp .7s .15s ease both;
+            flex-shrink: 0;
+        }
+
+            .hero-logo-wrap img {
+                width: 210px;
+                height: 210px;
+                border-radius: 50%;
+                border: 3px solid rgba(245,184,14,.35);
+                box-shadow: 0 0 48px rgba(245,184,14,.12);
+            }
+
+        /* ── BUTTONS ── */
         .btn {
             display: inline-flex;
             align-items: center;
-            gap: .5rem;
-            padding: .85rem 2rem;
-            border-radius: 6px;
-            font-family: 'Orbitron', sans-serif;
-            font-size: .78rem;
+            gap: .4rem;
+            padding: .75rem 1.6rem;
+            border-radius: 7px;
+            font-family: 'Inter', sans-serif;
+            font-size: .875rem;
             font-weight: 600;
-            letter-spacing: .08em;
-            text-transform: uppercase;
             text-decoration: none;
             cursor: pointer;
             border: none;
-            transition: transform .2s, box-shadow .2s;
+            transition: transform .17s, box-shadow .17s, background .17s;
         }
 
             .btn:hover {
-                transform: translateY(-2px);
+                transform: translateY(-1px);
             }
 
-        .btn-gold {
-            background: var(--gold);
+        .btn-primary {
+            background: var(--gold-light);
             color: var(--navy);
-            box-shadow: 0 4px 24px rgba(245,184,14,.3);
+            box-shadow: 0 3px 14px rgba(245,184,14,.32);
         }
 
-            .btn-gold:hover {
-                box-shadow: 0 8px 32px rgba(245,184,14,.45);
+            .btn-primary:hover {
+                box-shadow: 0 6px 22px rgba(245,184,14,.48);
+            }
+
+        .btn-ghost {
+            background: rgba(255,255,255,.09);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,.18);
+        }
+
+            .btn-ghost:hover {
+                background: rgba(255,255,255,.16);
+            }
+
+        .btn-navy {
+            background: var(--navy);
+            color: #fff;
+            box-shadow: var(--shadow-md);
+        }
+
+            .btn-navy:hover {
+                background: var(--navy-mid);
             }
 
         .btn-outline {
             background: transparent;
-            border: 1px solid var(--border);
-            color: var(--white);
+            color: var(--navy);
+            border: 1.5px solid var(--navy);
         }
 
             .btn-outline:hover {
-                border-color: var(--gold);
-                color: var(--gold);
+                background: var(--navy);
+                color: #fff;
             }
 
-        /* ── SECTION COMMON ── */
+        /* ── SECTIONS ── */
         section {
-            position: relative;
-            z-index: 1;
-            padding: 6rem 2rem;
+            padding: 5.5rem 2.5rem;
         }
 
         .section-inner {
@@ -259,438 +337,530 @@
             margin: 0 auto;
         }
 
-        .section-label {
-            font-family: 'Orbitron', sans-serif;
-            font-size: .7rem;
-            letter-spacing: .18em;
+        .section-eyebrow {
+            font-size: .73rem;
+            font-weight: 700;
+            letter-spacing: .1em;
             text-transform: uppercase;
             color: var(--gold);
-            margin-bottom: .75rem;
+            margin-bottom: .55rem;
         }
-
-        h2 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(1.6rem, 4vw, 2.8rem);
-            font-weight: 800;
-            line-height: 1.1;
-        }
-
-            h2 span {
-                color: var(--gold);
-            }
 
         .section-desc {
-            margin-top: 1rem;
+            color: var(--text-mid);
+            font-size: 1rem;
+            margin-top: .75rem;
             max-width: 520px;
-            color: var(--muted);
-            font-weight: 300;
-            line-height: 1.7;
         }
 
-        /* ── DIVIDER ── */
-        .divider {
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--border), transparent);
-            margin: 0 auto;
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        /* alternating bg */
+        #about {
+            background: var(--bg);
+        }
+
+        #focus {
+            background: var(--white);
+        }
+
+        #events {
+            background: var(--bg);
+        }
+
+        #leadership {
+            background: var(--white);
+        }
+
+        #join {
+            background: var(--navy);
         }
 
         /* ── ABOUT ── */
         #about .section-inner {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 5rem;
             align-items: center;
         }
 
-        .about-stats {
+        .about-text p + p {
+            margin-top: .75rem;
+        }
+
+        .about-text a {
+            color: var(--gold);
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+            .about-text a:hover {
+                text-decoration: underline;
+            }
+
+        .about-text .btn {
+            margin-top: 1.75rem;
+        }
+
+        .stat-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
+            gap: 1rem;
         }
 
         .stat-card {
-            background: var(--card);
+            background: var(--white);
             border: 1px solid var(--border);
-            border-radius: 10px;
+            border-radius: var(--radius);
             padding: 1.5rem;
+            box-shadow: var(--shadow-sm);
         }
 
-            .stat-card .num {
-                font-family: 'Orbitron', sans-serif;
-                font-size: 2rem;
-                font-weight: 900;
-                color: var(--gold);
-            }
-
-            .stat-card .lbl {
-                font-size: .8rem;
-                color: var(--muted);
-                margin-top: .25rem;
-            }
-
-        /* ── FOCUS AREAS ── */
-        #focus {
-            background: linear-gradient(180deg, var(--navy) 0%, #091a38 100%);
+        .stat-num {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: var(--navy);
         }
 
+        .stat-lbl {
+            font-size: .82rem;
+            color: var(--text-light);
+            margin-top: .2rem;
+        }
+
+        /* ── FOCUS ── */
         .focus-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
         }
 
         .focus-card {
-            background: var(--card);
+            background: var(--bg);
             border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            transition: border-color .25s, transform .25s, box-shadow .25s;
-            position: relative;
-            overflow: hidden;
+            border-radius: var(--radius);
+            padding: 1.75rem;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow .22s, transform .22s, border-color .22s;
         }
 
-            .focus-card::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                height: 3px;
-                background: linear-gradient(90deg, var(--gold), var(--gold2));
-                transform: scaleX(0);
-                transform-origin: left;
-                transition: transform .3s;
-            }
-
-            .focus-card:hover::before {
-                transform: scaleX(1);
-            }
-
             .focus-card:hover {
-                border-color: rgba(245,184,14,.35);
-                transform: translateY(-4px);
-                box-shadow: 0 16px 40px rgba(0,0,0,.3);
+                box-shadow: var(--shadow-lg);
+                transform: translateY(-3px);
+                border-color: #c7d4e0;
             }
 
         .focus-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            width: 42px;
+            height: 42px;
+            border-radius: 9px;
+            background: var(--gold-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: .875rem;
         }
 
         .focus-card h3 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: .9rem;
-            font-weight: 700;
-            letter-spacing: .05em;
-            margin-bottom: .75rem;
-            color: var(--white);
+            margin-bottom: .45rem;
         }
 
         .focus-card p {
-            color: var(--muted);
             font-size: .9rem;
-            line-height: 1.65;
+            color: var(--text-light);
         }
 
         /* ── EVENTS ── */
         #events .section-inner {
             display: grid;
-            grid-template-columns: 1fr 1.4fr;
-            gap: 4rem;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 5rem;
             align-items: start;
         }
 
         .events-list {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            margin-top: 3rem;
+            gap: .875rem;
         }
 
         .event-item {
             display: flex;
-            gap: 1.25rem;
+            gap: 1rem;
             align-items: flex-start;
-            background: var(--card);
+            background: var(--white);
             border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 1.25rem 1.5rem;
-            transition: border-color .2s;
+            border-radius: var(--radius);
+            padding: 1.1rem 1.25rem;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow .2s, border-color .2s;
         }
 
             .event-item:hover {
-                border-color: rgba(245,184,14,.4);
+                box-shadow: var(--shadow-md);
+                border-color: #c7d4e0;
             }
 
         .event-date {
-            min-width: 48px;
+            min-width: 50px;
             text-align: center;
-            background: rgba(245,184,14,.1);
+            flex-shrink: 0;
+            background: var(--navy);
             border-radius: 8px;
-            padding: .5rem .25rem;
+            padding: .5rem .4rem;
         }
 
             .event-date .mon {
-                font-family: 'Orbitron', sans-serif;
-                font-size: .6rem;
-                letter-spacing: .1em;
+                font-size: .58rem;
+                font-weight: 700;
+                letter-spacing: .08em;
                 text-transform: uppercase;
-                color: var(--gold);
+                color: var(--gold-light);
             }
 
             .event-date .day {
-                font-family: 'Orbitron', sans-serif;
-                font-size: 1.4rem;
-                font-weight: 900;
-                color: var(--white);
-                line-height: 1;
+                font-family: 'Sora', sans-serif;
+                font-size: 1.3rem;
+                font-weight: 800;
+                color: #fff;
+                line-height: 1.1;
             }
 
         .event-info h4 {
-            font-family: 'Orbitron', sans-serif;
-            font-size: .8rem;
+            font-family: 'Sora', sans-serif;
+            font-size: .9rem;
             font-weight: 700;
-            letter-spacing: .05em;
+            color: var(--text);
+            margin-bottom: .2rem;
         }
 
         .event-info p {
-            color: var(--muted);
-            font-size: .82rem;
-            margin-top: .3rem;
+            font-size: .83rem;
+            color: var(--text-light);
         }
 
         .event-tag {
             display: inline-block;
-            margin-top: .5rem;
-            background: rgba(245,184,14,.1);
-            color: var(--gold);
+            margin-top: .4rem;
             font-size: .68rem;
-            letter-spacing: .1em;
+            font-weight: 600;
+            letter-spacing: .05em;
             text-transform: uppercase;
-            padding: .2rem .6rem;
+            padding: .18rem .55rem;
             border-radius: 4px;
         }
 
-        /* ── JOIN ── */
-        #join {
-            text-align: center;
+        .tag-workshop {
+            background: #f0fdf4;
+            color: #166534;
         }
 
-        .join-box {
-            max-width: 640px;
-            margin: 3rem auto 0;
-            background: var(--card);
+        .tag-speaker {
+            background: #eff6ff;
+            color: #1d4ed8;
+        }
+
+        .tag-showcase {
+            background: #fdf4ff;
+            color: #7e22ce;
+        }
+
+        .tag-social {
+            background: #fff7ed;
+            color: #c2410c;
+        }
+
+        /* ── LEADERSHIP ── */
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .leader-card {
+            background: var(--bg);
             border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 3rem 2rem;
-            position: relative;
+            border-radius: var(--radius);
+            padding: 1.75rem 1.25rem;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow .2s, transform .2s;
+        }
+
+            .leader-card:hover {
+                box-shadow: var(--shadow-md);
+                transform: translateY(-2px);
+            }
+
+        .leader-avatar {
+            width: 68px;
+            height: 68px;
+            border-radius: 50%;
+            background: var(--navy);
+            border: 3px solid var(--gold-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-family: 'Sora', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: rgba(255,255,255,.7);
             overflow: hidden;
         }
 
-            .join-box::before {
-                content: '';
-                position: absolute;
-                inset: -1px;
-                background: linear-gradient(135deg, rgba(245,184,14,.2), transparent 60%);
-                border-radius: 16px;
-                pointer-events: none;
+            .leader-avatar img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 50%;
             }
 
-            .join-box p {
-                color: var(--muted);
-                line-height: 1.7;
-                margin: 1rem 0 2rem;
+        .leader-role {
+            font-size: .68rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: .3rem;
+        }
+
+        .leader-name {
+            font-family: 'Sora', sans-serif;
+            font-size: .9rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .advisors-section {
+            border-top: 1px solid var(--border);
+            padding-top: 2.25rem;
+            margin-top: .5rem;
+        }
+
+        .advisors-label {
+            font-size: .72rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: 1.1rem;
+        }
+
+        .advisors-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            max-width: 560px;
+        }
+
+        .advisor-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.1rem 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: .875rem;
+        }
+
+        .advisor-avatar {
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            background: var(--navy);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Sora', sans-serif;
+            font-size: .8rem;
+            font-weight: 700;
+            color: rgba(255,255,255,.65);
+        }
+
+        .advisor-role {
+            font-size: .65rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--text-light);
+            margin-bottom: .15rem;
+        }
+
+        .advisor-name {
+            font-family: 'Sora', sans-serif;
+            font-size: .88rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .advisor-card a {
+            font-size: .75rem;
+            color: var(--gold);
+            text-decoration: none;
+            display: block;
+            margin-top: .15rem;
+        }
+
+            .advisor-card a:hover {
+                text-decoration: underline;
+            }
+
+        /* ── JOIN ── */
+        #join h2 {
+            color: #fff;
+        }
+
+        #join .section-eyebrow {
+            color: var(--gold-light);
+            opacity: .85;
+        }
+
+        #join .section-desc {
+            color: rgba(255,255,255,.6);
+        }
+
+            #join .section-desc a {
+                color: var(--gold-light);
+                font-weight: 500;
+                text-decoration: none;
+            }
+
+                #join .section-desc a:hover {
+                    text-decoration: underline;
+                }
+
+        .join-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .join-left p {
+            color: rgba(255,255,255,.62);
+            line-height: 1.75;
+            margin-bottom: 1.5rem;
+        }
+
+        .join-left a {
+            color: var(--gold-light);
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+            .join-left a:hover {
+                text-decoration: underline;
+            }
+
+        .join-form-box {
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.11);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+            .join-form-box > p {
+                color: rgba(255,255,255,.55);
+                font-size: .9rem;
+                margin-bottom: 1.1rem;
             }
 
         .join-form {
             display: flex;
-            gap: .75rem;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-direction: column;
+            gap: .7rem;
         }
 
             .join-form input {
-                flex: 1;
-                min-width: 220px;
-                background: rgba(255,255,255,.05);
-                border: 1px solid var(--border);
-                border-radius: 6px;
-                padding: .8rem 1.25rem;
-                color: var(--white);
-                font-family: 'DM Sans', sans-serif;
+                background: rgba(255,255,255,.07);
+                border: 1px solid rgba(255,255,255,.14);
+                border-radius: 7px;
+                padding: .78rem 1rem;
+                color: #fff;
+                font-family: 'Inter', sans-serif;
                 font-size: .9rem;
                 outline: none;
                 transition: border-color .2s;
             }
 
                 .join-form input::placeholder {
-                    color: var(--muted);
+                    color: rgba(255,255,255,.3);
                 }
 
                 .join-form input:focus {
-                    border-color: var(--gold);
+                    border-color: var(--gold-light);
                 }
 
-        /* ── LEADERSHIP ── */
-        #leadership {
-            background: linear-gradient(180deg, #091a38 0%, var(--navy) 100%);
-        }
-
-        .leadership-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.25rem;
-            margin-top: 3rem;
-        }
-
-        .leader-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.75rem 1.25rem;
-            text-align: center;
-            transition: border-color .25s, transform .25s;
-            position: relative;
-            overflow: hidden;
-        }
-
-            .leader-card:hover {
-                border-color: rgba(245,184,14,.45);
-                transform: translateY(-4px);
-            }
-
-        .leader-avatar {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--blue), #0d2545);
-            border: 2px solid var(--gold);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 800;
-            color: var(--gold);
-        }
-
-        .leader-card.advisor .leader-avatar {
-            border-color: var(--muted);
-            color: var(--muted);
-        }
-
-        .leader-role {
-            font-family: 'Orbitron', sans-serif;
-            font-size: .6rem;
-            letter-spacing: .14em;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: .4rem;
-        }
-
-        .leader-card.advisor .leader-role {
-            color: var(--muted);
-        }
-
-        .leader-name {
-            font-size: .95rem;
-            font-weight: 500;
-            color: var(--white);
-            line-height: 1.3;
-        }
-
-        .leaders-divider {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin: 2.5rem 0 0;
-        }
-
-            .leaders-divider span {
-                font-family: 'Orbitron', sans-serif;
-                font-size: .65rem;
-                letter-spacing: .15em;
-                text-transform: uppercase;
-                color: var(--muted);
-                white-space: nowrap;
-            }
-
-            .leaders-divider::before, .leaders-divider::after {
-                content: '';
-                flex: 1;
-                height: 1px;
-                background: var(--border);
-            }
-
-        .advisors-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.25rem;
-            margin-top: 1.25rem;
+        .join-note {
+            font-size: .76rem;
+            color: rgba(255,255,255,.35);
+            margin-top: .75rem;
         }
 
         /* ── FOOTER ── */
         footer {
-            position: relative;
-            z-index: 1;
-            border-top: 1px solid var(--border);
-            padding: 2rem 3rem;
+            background: #091d3a;
+            padding: 2.25rem 2.5rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,.06);
         }
 
         .footer-logo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: .85rem;
-            font-weight: 800;
-            color: var(--gold);
-            letter-spacing: .08em;
+            font-family: 'Sora', sans-serif;
+            font-size: .9rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: .25rem;
         }
 
-        footer p {
-            color: var(--muted);
-            font-size: .8rem;
+        .footer-meta p {
+            font-size: .78rem;
+            color: rgba(255,255,255,.38);
+        }
+
+        .footer-meta .tagline {
+            font-style: italic;
+            color: rgba(255,255,255,.28);
         }
 
         .footer-links {
             display: flex;
-            gap: 1.5rem;
+            gap: 1.75rem;
         }
 
             .footer-links a {
-                color: var(--muted);
+                color: rgba(255,255,255,.45);
                 text-decoration: none;
-                font-size: .8rem;
+                font-size: .82rem;
                 transition: color .2s;
             }
 
                 .footer-links a:hover {
-                    color: var(--gold);
+                    color: var(--gold-light);
                 }
+
+        .footer-copy {
+            font-size: .76rem;
+            color: rgba(255,255,255,.28);
+        }
 
         /* ── ANIMATIONS ── */
         @keyframes fadeUp {
             from {
                 opacity: 0;
-                transform: translateY(24px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeDown {
-            from {
-                opacity: 0;
-                transform: translateY(-12px);
+                transform: translateY(18px);
             }
 
             to {
@@ -709,25 +879,10 @@
             }
         }
 
-        @keyframes rotateSlow {
-            from {
-                box-shadow: 0 0 40px rgba(245,184,14,.25), 0 0 80px rgba(245,184,14,.1);
-            }
-
-            50% {
-                box-shadow: 0 0 60px rgba(245,184,14,.4), 0 0 120px rgba(245,184,14,.15);
-            }
-
-            to {
-                box-shadow: 0 0 40px rgba(245,184,14,.25), 0 0 80px rgba(245,184,14,.1);
-            }
-        }
-
-        /* Scroll reveal */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity .7s ease, transform .7s ease;
+            transform: translateY(18px);
+            transition: opacity .6s ease, transform .6s ease;
         }
 
             .reveal.visible {
@@ -736,24 +891,81 @@
             }
 
         /* ── RESPONSIVE ── */
-        @media (max-width: 768px) {
+        @media (max-width: 960px) {
+            .focus-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .leadership-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            #about .section-inner,
+            #events .section-inner,
+            .join-content {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .hero-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-logo-wrap {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
             nav {
-                padding: 1rem 1.25rem;
+                padding: .875rem 1.25rem;
             }
 
             .nav-links {
                 display: none;
+                flex-direction: column;
+                gap: .875rem;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #fff;
+                border-bottom: 1px solid var(--border);
+                padding: 1.25rem 1.5rem;
             }
 
-            #about .section-inner,
-            #events .section-inner {
+                .nav-links.open {
+                    display: flex;
+                }
+
+            .hamburger {
+                display: flex;
+            }
+
+            section {
+                padding: 4rem 1.25rem;
+            }
+
+            .focus-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+            }
+
+            .leadership-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .advisors-grid {
+                grid-template-columns: 1fr;
+                max-width: 100%;
             }
 
             footer {
                 flex-direction: column;
                 text-align: center;
+            }
+
+            .footer-links {
+                justify-content: center;
             }
         }
     </style>
@@ -766,84 +978,75 @@
             <img src="AI_Club_Logo.png" alt="Oregon Tech AI Club Logo" />
             Oregon Tech AI Club
         </a>
-        <ul class="nav-links">
+        <ul class="nav-links" id="navLinks">
             <li><a href="#about">About</a></li>
             <li><a href="#focus">Focus Areas</a></li>
             <li><a href="#events">Events</a></li>
             <li><a href="#leadership">Leadership</a></li>
-            <li><a href="#join">Join</a></li>
+            <li><a href="https://theroost.oit.edu/feeds?type=club&type_id=35573" target="_blank" class="nav-cta">Join on The Roost</a></li>
         </ul>
+        <div class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Open navigation menu">
+            <span></span><span></span><span></span>
+        </div>
     </nav>
 
     <!-- HERO -->
     <section id="hero">
-        <div class="hero-badge"><span></span> Oregon Institute of Technology</div>
-        <img src="AI_Club_Logo.png" alt="AI Club Logo" class="hero-logo" />
-        <h1>Oregon Tech<br /><span>AI Club</span></h1>
-        <p class="hero-sub">
-            Where AI Meets Cybersecurity and IT — empowering Oregon Tech students to build
-            ethical, intelligent, and secure systems that positively impact society.
-        </p>
-        <div class="hero-ctas">
-            <a href="https://theroost.oit.edu/feeds?type=club&type_id=35573" target="_blank" class="btn btn-gold">⚡ Join on The Roost</a>
-            <a href="#focus" class="btn btn-outline">Learn More →</a>
+        <div class="hero-inner">
+            <div class="hero-text">
+                <div class="hero-tag"><span class="dot"></span> Oregon Institute of Technology</div>
+                <h1>Oregon Tech<br /><em>AI Club</em></h1>
+                <p class="hero-sub">Where AI Meets Cybersecurity and IT — empowering Oregon Tech students to build ethical, intelligent, and secure systems that positively impact society.</p>
+                <div class="hero-ctas">
+                    <a href="https://theroost.oit.edu/feeds?type=club&type_id=35573" target="_blank" class="btn btn-primary">Join on The Roost</a>
+                    <a href="#about" class="btn btn-ghost">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-logo-wrap">
+                <img src="AI_Club_Logo.png" alt="Oregon Tech AI Club Logo" />
+            </div>
         </div>
     </section>
-
-    <div class="divider"></div>
 
     <!-- ABOUT -->
     <section id="about">
         <div class="section-inner">
-            <div class="reveal">
-                <p class="section-label">// Who We Are</p>
-                <h2>AI, Cybersecurity,<br /><span>& IT — United</span></h2>
-                <p class="section-desc">
-                    The Oregon Tech AI Club builds a welcoming, interdisciplinary community for students
-                    interested in AI and its intersection with cybersecurity and IT — regardless of major or prior
-                    experience. We offer hands-on labs, workshops, and projects that develop practical, industry-ready skills.
-                </p>
-                <p class="section-desc" style="margin-top:.85rem;">
-                    Membership is free and open to all currently enrolled Oregon Tech students. Join us on
-                    <a href="https://theroost.oit.edu/feeds?type=club&type_id=35573" target="_blank" style="color:var(--gold); text-decoration:none;">The Roost</a> or sign in at any meeting to get started.
-                </p>
-                <div style="margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap;">
-                    <a href="mailto:praveen.guraja@oit.edu" class="btn btn-outline" style="font-size:.75rem;">✉ Contact Faculty Advisor</a>
-                </div>
+            <div class="about-text reveal">
+                <p class="section-eyebrow">Who We Are</p>
+                <h2>A Community Built for Every Student</h2>
+                <p>The Oregon Tech AI Club brings together students passionate about artificial intelligence, cybersecurity, and information technology — regardless of major or prior experience. We're a welcoming, interdisciplinary community focused on building real skills for real careers.</p>
+                <p>Our activities span hands-on labs, workshops, guest speaker sessions, competitions, and collaborative projects. Whether you're just starting out or already deep in the field, there's a place for you here.</p>
+                <p>Membership is <strong>free</strong> and open to all enrolled Oregon Tech students. Join us on <a href="https://theroost.oit.edu/feeds?type=club&type_id=35573" target="_blank">The Roost</a> or sign in at any general meeting.</p>
+                <a href="#join" class="btn btn-navy">Get Involved</a>
             </div>
-            <div class="about-stats reveal">
+            <div class="stat-grid reveal">
                 <div class="stat-card">
-                    <div class="num">Free</div>
-                    <div class="lbl">No Membership Dues</div>
+                    <div class="stat-num">Free</div>
+                    <div class="stat-lbl">No membership dues required</div>
                 </div>
                 <div class="stat-card">
-                    <div class="num">2x</div>
-                    <div class="lbl">Monthly General Meetings</div>
+                    <div class="stat-num">2×</div>
+                    <div class="stat-lbl">General meetings per month</div>
                 </div>
                 <div class="stat-card">
-                    <div class="num">Any</div>
-                    <div class="lbl">Major Welcome</div>
+                    <div class="stat-num">All</div>
+                    <div class="stat-lbl">Majors welcome to join</div>
                 </div>
                 <div class="stat-card">
-                    <div class="num">OIT</div>
-                    <div class="lbl">Student Organization</div>
+                    <div class="stat-num">OIT</div>
+                    <div class="stat-lbl">Recognized student organization</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="divider"></div>
-
     <!-- FOCUS AREAS -->
     <section id="focus">
         <div class="section-inner">
-            <div class="reveal">
-                <p class="section-label">// What We Do</p>
-                <h2>Focus <span>Areas</span></h2>
-                <p class="section-desc">
-                    We balance activities across three pillars — AI, Cybersecurity, and IT — with hands-on labs,
-                    competitions, speaker events, and real projects.
-                </p>
+            <div class="section-header reveal">
+                <p class="section-eyebrow">What We Do</p>
+                <h2>Focus Areas</h2>
+                <p class="section-desc">We balance activities across three pillars — AI, Cybersecurity, and IT — with hands-on projects, competitions, and industry connections.</p>
             </div>
             <div class="focus-grid">
                 <div class="focus-card reveal">
@@ -859,16 +1062,16 @@
                 <div class="focus-card reveal">
                     <div class="focus-icon">🔒</div>
                     <h3>Cybersecurity</h3>
-                    <p>Network security, application security, ethical hacking (within legal limits), incident response, and AI-powered cyber defense strategies.</p>
+                    <p>Network security, application security, ethical hacking, incident response, and AI-powered cyber defense strategies.</p>
                 </div>
                 <div class="focus-card reveal">
                     <div class="focus-icon">🖧</div>
-                    <h3>IT & Infrastructure</h3>
+                    <h3>IT &amp; Infrastructure</h3>
                     <p>Networking, cloud computing, systems administration, and IT best practices. Bridge the gap between AI and the infrastructure that runs it.</p>
                 </div>
                 <div class="focus-card reveal">
                     <div class="focus-icon">⚖️</div>
-                    <h3>Ethics & Responsible AI</h3>
+                    <h3>Ethics &amp; Responsible AI</h3>
                     <p>Tackle bias, fairness, transparency, and safety. We promote ethical use of AI and security technologies in alignment with professional standards.</p>
                 </div>
                 <div class="focus-card reveal">
@@ -880,18 +1083,14 @@
         </div>
     </section>
 
-    <div class="divider"></div>
-
     <!-- EVENTS -->
     <section id="events">
         <div class="section-inner">
             <div class="reveal">
-                <p class="section-label">// Calendar</p>
-                <h2>Upcoming <span>Events</span></h2>
-                <p class="section-desc" style="margin-bottom:2rem;">
-                    Stay plugged in. We host workshops, speaker sessions, and project sprints throughout the academic year.
-                </p>
-                <a href="#join" class="btn btn-gold" style="font-size:.75rem;">Get Notified →</a>
+                <p class="section-eyebrow">Calendar</p>
+                <h2>Upcoming Events</h2>
+                <p class="section-desc" style="margin-bottom:2rem;">We host workshops, speaker sessions, and project sprints throughout the academic year. All events are free to attend.</p>
+                <a href="#join" class="btn btn-navy">Get Notified</a>
             </div>
             <div class="events-list reveal">
                 <div class="event-item">
@@ -899,7 +1098,7 @@
                     <div class="event-info">
                         <h4>Intro to PyTorch Workshop</h4>
                         <p>Hands-on session building your first neural network from scratch. Laptops required.</p>
-                        <span class="event-tag">Workshop</span>
+                        <span class="event-tag tag-workshop">Workshop</span>
                     </div>
                 </div>
                 <div class="event-item">
@@ -907,7 +1106,7 @@
                     <div class="event-info">
                         <h4>Guest Speaker: Applied ML in Industry</h4>
                         <p>A working ML engineer discusses real-world model deployment and lessons learned.</p>
-                        <span class="event-tag">Speaker</span>
+                        <span class="event-tag tag-speaker">Speaker</span>
                     </div>
                 </div>
                 <div class="event-item">
@@ -915,35 +1114,33 @@
                     <div class="event-info">
                         <h4>End-of-Year Project Showcase</h4>
                         <p>Members present their semester projects. Open to the whole OIT community.</p>
-                        <span class="event-tag">Showcase</span>
+                        <span class="event-tag tag-showcase">Showcase</span>
                     </div>
                 </div>
                 <div class="event-item">
                     <div class="event-date"><div class="mon">Sep</div><div class="day">TBD</div></div>
                     <div class="event-info">
-                        <h4>Fall Kickoff & New Member Orientation</h4>
+                        <h4>Fall Kickoff &amp; New Member Orientation</h4>
                         <p>Kick off the new year, meet fellow members, and pick your focus track.</p>
-                        <span class="event-tag">Social</span>
+                        <span class="event-tag tag-social">Social</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="divider"></div>
-
     <!-- LEADERSHIP -->
     <section id="leadership">
         <div class="section-inner">
-            <div class="reveal">
-                <p class="section-label">// 2025–2026 Officers</p>
-                <h2>Club <span>Leadership</span></h2>
-                <p class="section-desc">Meet the team keeping the gears turning and the models training.</p>
+            <div class="section-header reveal">
+                <p class="section-eyebrow">2025–2026 Officers</p>
+                <h2>Club Leadership</h2>
+                <p class="section-desc">Meet the team driving the club forward this academic year.</p>
             </div>
             <div class="leadership-grid reveal">
                 <div class="leader-card">
-                    <div class="leader-avatar" style="padding:0; overflow:hidden; border:2px solid var(--gold);">
-                        <img src="Images/uriel-headshot.jpg" alt="Uriel Aguilar Torres" style="width:100%; height:100%; object-fit:cover; border-radius:50%;" />
+                    <div class="leader-avatar">
+                        <img src="Images/uriel-headshot.jpg" alt="Uriel Aguilar Torres" />
                     </div>
                     <div class="leader-role">President</div>
                     <div class="leader-name">Uriel Aguilar Torres</div>
@@ -964,88 +1161,95 @@
                     <div class="leader-name">Drake Macias</div>
                 </div>
             </div>
-
-            <div class="leaders-divider reveal">
-                <span>Faculty Advisors</span>
-            </div>
-            <div class="advisors-grid reveal">
-                <div class="leader-card advisor">
-                    <div class="leader-avatar">PG</div>
-                    <div class="leader-role">Faculty Advisor</div>
-                    <div class="leader-name">Dr. Praveen Guraja</div>
-                    <a href="mailto:praveen.guraja@oit.edu" style="display:block; margin-top:.6rem; font-size:.75rem; color:var(--muted); text-decoration:none;">praveen.guraja@oit.edu</a>
-                </div>
-                <div class="leader-card advisor">
-                    <div class="leader-avatar">MN</div>
-                    <div class="leader-role">Faculty Co-Advisor</div>
-                    <div class="leader-name">Prof. Manish Nalluri</div>
-                    <a href="mailto:Manish.Nalluri@oit.edu" style="display:block; margin-top:.6rem; font-size:.75rem; color:var(--muted); text-decoration:none;">Manish.Nalluri@oit.edu</a>
+            <div class="advisors-section reveal">
+                <p class="advisors-label">Faculty Advisors</p>
+                <div class="advisors-grid">
+                    <div class="advisor-card">
+                        <div class="advisor-avatar">PG</div>
+                        <div>
+                            <div class="advisor-role">Faculty Advisor</div>
+                            <div class="advisor-name">Dr. Praveen Guraja</div>
+                            <a href="mailto:praveen.guraja@oit.edu">praveen.guraja@oit.edu</a>
+                        </div>
+                    </div>
+                    <div class="advisor-card">
+                        <div class="advisor-avatar">MN</div>
+                        <div>
+                            <div class="advisor-role">Faculty Co-Advisor</div>
+                            <div class="advisor-name">Prof. Manish Nalluri</div>
+                            <a href="mailto:Manish.Nalluri@oit.edu">Manish.Nalluri@oit.edu</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="divider"></div>
-
     <!-- JOIN -->
     <section id="join">
         <div class="section-inner">
             <div class="reveal">
-                <p class="section-label">// Get Involved</p>
-                <h2>Join <span>Our Club</span></h2>
+                <p class="section-eyebrow">Get Involved</p>
+                <h2>Join the Oregon Tech AI Club</h2>
+                <p class="section-desc">Membership is free and open to all Oregon Tech students. No experience required — just curiosity.</p>
             </div>
-            <div class="join-box reveal">
-                <p>
-                    Membership is <strong style="color:var(--white);">free</strong> and open to all Oregon Tech students, regardless of major or experience level.
-                    Join us on <a href="https://theroost.oit.edu/feeds?type=club&type_id=35573" target="_blank" style="color:var(--gold); text-decoration:none; font-weight:500;">The Roost</a>, or simply sign in at any
-                    general meeting and ask to be added to the roster.
-                </p>
-                <div class="join-form">
-                    <input type="email" placeholder="yourname@oit.edu" />
-                    <button class="btn btn-gold" onclick="handleSignup(this)">Request to Join</button>
+            <div class="join-content">
+                <div class="join-left reveal">
+                    <p>The easiest way to join is through <a href="https://theroost.oit.edu/feeds?type=club&type_id=35573" target="_blank">The Roost</a>, Oregon Tech's student involvement platform. You can also show up to any general meeting and sign in — we meet at least twice per month during the academic year.</p>
+                    <a href="https://theroost.oit.edu/feeds?type=club&type_id=35573" target="_blank" class="btn btn-primary">Join on The Roost →</a>
                 </div>
-                <p style="font-size:.78rem; margin-top:1.25rem; color: var(--muted);">
-                    We meet at least twice per month during the academic year. Check The Roost or contact an officer for current meeting times and location.
-                </p>
+                <div class="join-form-box reveal">
+                    <p>Or drop your OIT email and we'll send you meeting times and event invites directly.</p>
+                    <div class="join-form">
+                        <input type="email" placeholder="yourname@oit.edu" aria-label="Your OIT email address" />
+                        <button class="btn btn-primary" onclick="handleSignup(this)">Send Me Updates</button>
+                    </div>
+                    <p class="join-note">We meet at least twice per month. Check The Roost or contact an officer for current room info.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
     <footer>
-        <div>
+        <div class="footer-meta">
             <div class="footer-logo">Oregon Tech AI Club</div>
-            <p style="margin-top:.4rem;">Oregon Institute of Technology · Klamath Falls, OR</p>
-            <p style="margin-top:.2rem; font-style:italic;">"Where AI Meets Cybersecurity and IT."</p>
+            <p>Oregon Institute of Technology · Klamath Falls, OR</p>
+            <p class="tagline">"Where AI Meets Cybersecurity and IT."</p>
         </div>
         <div class="footer-links">
             <a href="https://theroost.oit.edu/feeds?type=club&type_id=35573" target="_blank">The Roost</a>
             <a href="https://github.com/oregon-tech-ai-club" target="_blank">GitHub</a>
-            <a href="mailto:praveen.guraja@oit.edu">Email Advisor</a>
+            <a href="mailto:praveen.guraja@oit.edu">Contact Advisor</a>
         </div>
-        <p>© 2025–2026 Oregon Tech AI Club</p>
+        <p class="footer-copy">© 2025–2026 Oregon Tech AI Club</p>
     </footer>
 
     <script>
-        // Scroll reveal
-        const reveals = document.querySelectorAll('.reveal');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(e => {
-                if (e.isIntersecting) { e.target.classList.add('visible'); }
-            });
-        }, { threshold: 0.12 });
-        reveals.forEach(el => observer.observe(el));
+        function toggleNav() {
+            document.getElementById('navLinks').classList.toggle('open');
+            document.getElementById('hamburger').classList.toggle('open');
+        }
+        document.querySelectorAll('#navLinks a').forEach(a => a.addEventListener('click', () => {
+            document.getElementById('navLinks').classList.remove('open');
+            document.getElementById('hamburger').classList.remove('open');
+        }));
 
-        // Join form feedback
+        const observer = new IntersectionObserver(
+            entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+            { threshold: 0.1 }
+        );
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
         function handleSignup(btn) {
             const input = btn.previousElementSibling;
             if (!input.value || !input.value.includes('@')) {
-                input.style.borderColor = '#e55';
+                input.style.borderColor = '#f87171';
                 setTimeout(() => input.style.borderColor = '', 1500);
                 return;
             }
-            btn.textContent = '✓ You\'re on the list!';
-            btn.style.background = '#27c27a';
+            btn.textContent = "✓ You're on the list!";
+            btn.style.background = '#22c55e';
             btn.style.color = '#fff';
             btn.disabled = true;
             input.disabled = true;
