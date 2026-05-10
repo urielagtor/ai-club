@@ -189,6 +189,7 @@
             z-index: 100;
             background: rgba(3, 23, 47, .96);
             backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
             border-bottom: 1px solid rgba(255,255,255,.1);
         }
 
@@ -470,7 +471,7 @@
                 inset: -14%;
                 z-index: -2;
                 border-radius: 50%;
-                background: radial-gradient( circle, rgba(248, 189, 34, .32) 0%, rgba(248, 189, 34, .18) 32%, rgba(248, 189, 34, .08) 52%, transparent 74% );
+                background: radial-gradient(circle, rgba(248, 189, 34, .32) 0%, rgba(248, 189, 34, .18) 32%, rgba(248, 189, 34, .08) 52%, transparent 74%);
                 filter: blur(24px);
             }
 
@@ -480,9 +481,7 @@
                 inset: 8%;
                 z-index: -1;
                 border-radius: 50%;
-                border: none;
-                box-shadow: none;
-                background: radial-gradient( circle, rgba(248, 189, 34, .20) 0%, rgba(248, 189, 34, .10) 38%, rgba(248, 189, 34, .04) 58%, transparent 76% );
+                background: radial-gradient(circle, rgba(248, 189, 34, .20) 0%, rgba(248, 189, 34, .10) 38%, rgba(248, 189, 34, .04) 58%, transparent 76%);
                 filter: blur(10px);
             }
 
@@ -696,8 +695,7 @@
             }
 
         /* =========================================================
-           EVENTS / PROJECTS / LEADERSHIP SECTION
-           Waves moved here behind Explore the Club
+           EVENTS / PROJECTS / LEADERSHIP
         ========================================================= */
 
         #events {
@@ -888,8 +886,8 @@
         }
 
         /* =========================================================
-           SHARED JOIN + FOOTER BACKGROUND
-           Hex pattern starts from bottom and stretches upward
+           JOIN + FOOTER BACKGROUND
+           HEX PATTERN FIXED HERE
         ========================================================= */
 
         .cta-footer-wrap {
@@ -900,46 +898,55 @@
             background: linear-gradient(115deg, #03172f 0%, #003767 58%, #0b4c7c 100%);
         }
 
+            /*
+          Hex pattern layer:
+          - Above the blue gradient
+          - Below the join box and footer content
+          - Starts at footer bottom and stretches upward into join band
+        */
             .cta-footer-wrap::before {
                 content: '';
                 position: absolute;
                 left: 0;
                 right: 0;
                 bottom: 0;
-                top: auto;
-                height: 100%;
-                z-index: 0;
+                height: 700px;
+                z-index: 1;
                 pointer-events: none;
                 background-image: url("Images/elements/hex-grad-15.png");
                 background-repeat: repeat-x;
                 background-position: center bottom;
-                background-size: auto 420px;
-                opacity: .34;
-                mix-blend-mode: screen;
+                background-size: auto 100%;
+                opacity: 1;
                 transform: scaleY(-1);
                 transform-origin: center bottom;
             }
 
+            /*
+          Soft overlay layer.
+          This sits above the hex pattern but is transparent enough
+          that the hex image remains visible.
+        */
             .cta-footer-wrap::after {
                 content: '';
                 position: absolute;
                 inset: 0;
-                z-index: 0;
+                z-index: 2;
                 pointer-events: none;
-                background: radial-gradient(circle at 18% 20%, rgba(248,189,34,.13), transparent 30%), linear-gradient(180deg, rgba(3,23,47,.08), rgba(3,23,47,.34));
+                background: radial-gradient(circle at 20% 15%, rgba(248,189,34,.08), transparent 32%), linear-gradient(180deg, rgba(3,23,47,.02), rgba(3,23,47,.18));
             }
 
             .cta-footer-wrap > section,
             .cta-footer-wrap > footer {
                 position: relative;
-                z-index: 1;
+                z-index: 3;
             }
 
         .join-band {
             position: relative;
-            overflow: hidden;
-            background: rgba(3, 23, 47, .34);
+            background: transparent;
             color: #fff;
+            padding-top: 5.5rem;
             padding-bottom: 2.5rem;
         }
 
@@ -953,7 +960,6 @@
 
         .join-box {
             position: relative;
-            z-index: 2;
             display: grid;
             grid-template-columns: minmax(0, 1fr) auto;
             gap: 1.5rem;
@@ -963,6 +969,7 @@
             border-radius: 24px;
             padding: 2rem;
             backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             box-shadow: 0 18px 45px rgba(0, 0, 0, .16);
         }
 
@@ -972,14 +979,21 @@
 
         footer {
             position: relative;
-            overflow: hidden;
-            background: rgba(3, 23, 47, .34);
+            background: transparent;
             color: #fff;
         }
 
+            /*
+          Important:
+          Keep this disabled.
+          The hex pattern is now handled by .cta-footer-wrap::before.
+        */
+            footer::before {
+                display: none;
+            }
+
         .footer-main {
             position: relative;
-            z-index: 2;
             display: grid;
             grid-template-columns: 1.15fr 1fr 1fr 1.1fr;
             gap: 2rem;
@@ -1047,11 +1061,10 @@
 
         .footer-bottom {
             position: relative;
-            z-index: 2;
             border-top: 1px solid rgba(255,255,255,.12);
             color: rgba(255,255,255,.72);
             font-size: .85rem;
-            background: rgba(3, 23, 47, .24);
+            background: rgba(3, 23, 47, .18);
         }
 
             .footer-bottom .container {
@@ -1098,7 +1111,7 @@
         }
 
         /* =========================================================
-           RESPONSIVE: LAPTOP / TABLET
+           RESPONSIVE
         ========================================================= */
 
         @media (max-width: 1120px) {
@@ -1161,10 +1174,6 @@
             }
         }
 
-        /* =========================================================
-           RESPONSIVE: MOBILE NAV
-        ========================================================= */
-
         @media (max-width: 860px) {
             .hamburger {
                 display: flex;
@@ -1217,10 +1226,6 @@
                 min-height: 190px;
             }
         }
-
-        /* =========================================================
-           RESPONSIVE: PHONES
-        ========================================================= */
 
         @media (max-width: 760px) {
             :root {
@@ -1819,6 +1824,13 @@
         const links = document.getElementById('navLinks');
         const hamburger = document.getElementById('hamburger');
 
+        function closeNav() {
+            links.classList.remove('open');
+            hamburger.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', 'false');
+            hamburger.setAttribute('aria-label', 'Open navigation menu');
+        }
+
         function toggleNav() {
             const isOpen = links.classList.toggle('open');
             hamburger.classList.toggle('open', isOpen);
@@ -1827,31 +1839,20 @@
         }
 
         document.querySelectorAll('#navLinks a').forEach(link => {
-            link.addEventListener('click', () => {
-                links.classList.remove('open');
-                hamburger.classList.remove('open');
-                hamburger.setAttribute('aria-expanded', 'false');
-                hamburger.setAttribute('aria-label', 'Open navigation menu');
-            });
+            link.addEventListener('click', closeNav);
         });
 
         document.addEventListener('click', event => {
             const clickedInsideNav = event.target.closest('.site-nav');
 
             if (!clickedInsideNav && links.classList.contains('open')) {
-                links.classList.remove('open');
-                hamburger.classList.remove('open');
-                hamburger.setAttribute('aria-expanded', 'false');
-                hamburger.setAttribute('aria-label', 'Open navigation menu');
+                closeNav();
             }
         });
 
         window.addEventListener('resize', () => {
             if (window.innerWidth > 860) {
-                links.classList.remove('open');
-                hamburger.classList.remove('open');
-                hamburger.setAttribute('aria-expanded', 'false');
-                hamburger.setAttribute('aria-label', 'Open navigation menu');
+                closeNav();
             }
         });
 
