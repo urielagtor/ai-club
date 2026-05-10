@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Oregon Tech AI Club | Building Intelligence. Securing the Future.</title>
+
+    <title>Oregon Tech AI Club | Learn AI. Build Projects. Prepare for the Future.</title>
+    <meta name="description" content="The Oregon Tech AI Club is a student-led organization focused on artificial intelligence, machine learning, cybersecurity, and emerging technology." />
 
     <!--
       ASSET PATHS
@@ -21,8 +23,6 @@
       - Images/officers/jackson-wiencken.jpg
       - Images/officers/drake-macias.jpg
       - Images/elements/hero-left-circuits.svg
-      - Images/elements/footer-left-circuits.svg
-      - Images/elements/footer-right-circuits.svg
       - Images/elements/waves.png
 
       Use forward slashes in paths:
@@ -42,7 +42,9 @@
            BASE / RESET
         ========================================================= */
 
-        *, *::before, *::after {
+        *,
+        *::before,
+        *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -57,6 +59,7 @@
             --gold-deep: #d99a0b;
             --white: #ffffff;
             --off-white: #f7f9fc;
+            --soft-blue: #eef5fb;
             --text: #10213a;
             --muted: #5f6f86;
             --line: #dbe4ef;
@@ -66,7 +69,7 @@
             --radius-lg: 24px;
             --shadow-sm: 0 4px 16px rgba(8, 31, 61, .08);
             --shadow-md: 0 12px 34px rgba(8, 31, 61, .14);
-            --shadow-gold: 0 10px 30px rgba(248, 189, 34, .26);
+            --shadow-gold: 0 10px 30px rgba(248, 189, 34, .24);
             --max: 1220px;
             --container-padding: 3rem;
             --section-padding: 5.5rem;
@@ -103,7 +106,10 @@
             font: inherit;
         }
 
-        h1, h2, h3, h4 {
+        h1,
+        h2,
+        h3,
+        h4 {
             font-family: 'Sora', system-ui, sans-serif;
             color: var(--text);
             line-height: 1.1;
@@ -111,7 +117,7 @@
         }
 
         h1 {
-            font-size: clamp(2.65rem, 7vw, 5.9rem);
+            font-size: clamp(2.65rem, 7vw, 5.75rem);
             font-weight: 800;
         }
 
@@ -231,6 +237,7 @@
                 text-decoration: none;
                 font-weight: 800;
                 font-size: .94rem;
+                letter-spacing: .01em;
                 transition: color .2s ease, background .2s ease, transform .2s ease;
                 position: relative;
             }
@@ -255,7 +262,7 @@
             background: var(--gold);
             color: var(--navy-dark) !important;
             padding: .75rem 1.35rem;
-            border-radius: 10px;
+            border-radius: 999px;
             box-shadow: var(--shadow-gold);
         }
 
@@ -338,16 +345,6 @@
 
             .btn-outline-light:hover {
                 background: rgba(255,255,255,.12);
-            }
-
-        .btn-navy {
-            background: var(--navy);
-            color: #fff;
-            box-shadow: var(--shadow-sm);
-        }
-
-            .btn-navy:hover {
-                background: var(--navy-soft);
             }
 
         /* =========================================================
@@ -443,7 +440,7 @@
         }
 
         .hero-copy {
-            max-width: 620px;
+            max-width: 650px;
             color: rgba(255,255,255,.82);
             font-size: 1.06rem;
             margin-bottom: 2rem;
@@ -465,27 +462,26 @@
             background: transparent;
         }
 
-            /* Soft gold glow behind the logo */
             .hero-logo-card::before {
                 content: '';
                 position: absolute;
-                inset: -10%;
+                inset: -14%;
                 z-index: -2;
                 border-radius: 50%;
-                background: radial-gradient( circle, rgba(248, 189, 34, .42) 0%, rgba(248, 189, 34, .26) 24%, rgba(248, 189, 34, .12) 46%, rgba(248, 189, 34, .04) 64%, transparent 78% );
-                filter: blur(18px);
+                background: radial-gradient( circle, rgba(248, 189, 34, .32) 0%, rgba(248, 189, 34, .18) 32%, rgba(248, 189, 34, .08) 52%, transparent 74% );
+                filter: blur(24px);
             }
 
-            /* Crisp outer halo */
             .hero-logo-card::after {
                 content: '';
                 position: absolute;
-                inset: 15%;
+                inset: 8%;
                 z-index: -1;
                 border-radius: 50%;
-                border: 2px solid rgba(248, 189, 34, .42);
-                box-shadow: 0 0 26px rgba(248, 189, 34, .40), 0 0 62px rgba(248, 189, 34, .28), 0 0 110px rgba(248, 189, 34, .16);
-                background: radial-gradient( circle, rgba(248, 189, 34, .10) 0%, rgba(248, 189, 34, .05) 44%, transparent 70% );
+                border: none;
+                box-shadow: none;
+                background: radial-gradient( circle, rgba(248, 189, 34, .20) 0%, rgba(248, 189, 34, .10) 38%, rgba(248, 189, 34, .04) 58%, transparent 76% );
+                filter: blur(10px);
             }
 
             .hero-logo-card img {
@@ -494,11 +490,11 @@
                 width: min(330px, 80%);
                 height: auto;
                 border-radius: 50%;
-                filter: drop-shadow(0 22px 34px rgba(0,0,0,.38)) drop-shadow(0 0 26px rgba(248,189,34,.32));
+                filter: drop-shadow(0 22px 34px rgba(0,0,0,.38)) drop-shadow(0 0 24px rgba(248,189,34,.26));
             }
 
         /* =========================================================
-           FEATURE CARDS
+           CARDS / SHARED COMPONENTS
         ========================================================= */
 
         .feature-strip {
@@ -525,18 +521,27 @@
             box-shadow: var(--shadow-sm);
         }
 
+        .feature-card,
+        .panel,
+        .project-card,
+        .event-row {
+            transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+        }
+
         .feature-card {
             padding: 1.45rem;
             display: grid;
             grid-template-columns: 68px 1fr;
             gap: 1rem;
             align-items: center;
-            transition: transform .2s ease, box-shadow .2s ease;
         }
 
-            .feature-card:hover {
+            .feature-card:hover,
+            .project-card:hover,
+            .event-row:hover {
                 transform: translateY(-4px);
                 box-shadow: var(--shadow-md);
+                border-color: rgba(248,189,34,.45);
             }
 
         .icon-badge {
@@ -546,10 +551,12 @@
             display: grid;
             place-items: center;
             color: var(--gold);
-            font-size: 1.7rem;
+            font-size: .98rem;
             background: var(--navy);
             border: 3px solid var(--gold);
             box-shadow: 0 8px 20px rgba(0,55,103,.16);
+            font-family: 'Sora', sans-serif;
+            font-weight: 800;
         }
 
         .feature-card h3 {
@@ -584,7 +591,7 @@
         }
 
         .section-heading p {
-            max-width: 620px;
+            max-width: 680px;
             margin-top: .8rem;
         }
 
@@ -613,9 +620,6 @@
             .panel-header h3 {
                 color: #fff;
                 font-size: 1rem;
-                display: flex;
-                align-items: center;
-                gap: .55rem;
             }
 
             .panel-header a {
@@ -631,8 +635,71 @@
         }
 
         /* =========================================================
-           EVENTS
+           ABOUT
         ========================================================= */
+
+        .about-band {
+            background: #ffffff;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .about-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .stat {
+            background: var(--off-white);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 1.2rem;
+        }
+
+            .stat strong {
+                display: block;
+                font-family: 'Sora', sans-serif;
+                color: var(--navy);
+                font-size: 1.8rem;
+                margin-bottom: .2rem;
+            }
+
+            .stat span {
+                color: var(--muted);
+                font-size: .85rem;
+            }
+
+        /* =========================================================
+           WHY JOIN
+        ========================================================= */
+
+        .why-section {
+            background: radial-gradient(circle at top left, rgba(248,189,34,.10), transparent 34%), linear-gradient(180deg, #f7f9fc 0%, #ffffff 100%);
+        }
+
+            .why-section .feature-card {
+                align-items: start;
+            }
+
+            .why-section .icon-badge {
+                border-radius: 16px;
+            }
+
+        /* =========================================================
+           EVENTS / PROJECTS / LEADERSHIP SECTION
+        ========================================================= */
+
+        #events {
+            background: linear-gradient(180deg, #eef5fb 0%, #f7f9fc 45%, #ffffff 100%);
+        }
 
         .event-list {
             display: grid;
@@ -684,10 +751,6 @@
             line-height: 1.45;
         }
 
-        /* =========================================================
-           PROJECTS
-        ========================================================= */
-
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -713,7 +776,7 @@
                 inset: 0;
                 background-image: radial-gradient(circle, rgba(248,189,34,.65) 0 2px, transparent 2.5px);
                 background-size: 26px 26px;
-                opacity: .2;
+                opacity: .18;
             }
 
         .project-copy {
@@ -740,10 +803,6 @@
             font-size: .67rem;
             font-weight: 900;
         }
-
-        /* =========================================================
-           OFFICERS
-        ========================================================= */
 
         .leaders-list {
             display: grid;
@@ -795,51 +854,7 @@
         }
 
         /* =========================================================
-           ABOUT
-        ========================================================= */
-
-        .about-band {
-            background: #fff;
-            border-top: 1px solid var(--line);
-            border-bottom: 1px solid var(--line);
-        }
-
-        .about-layout {
-            display: grid;
-            grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 1rem;
-        }
-
-        .stat {
-            background: var(--off-white);
-            border: 1px solid var(--line);
-            border-radius: var(--radius);
-            padding: 1.2rem;
-        }
-
-            .stat strong {
-                display: block;
-                font-family: 'Sora', sans-serif;
-                color: var(--navy);
-                font-size: 1.8rem;
-                margin-bottom: .2rem;
-            }
-
-            .stat span {
-                color: var(--muted);
-                font-size: .85rem;
-            }
-
-        /* =========================================================
            SHARED JOIN + FOOTER BACKGROUND
-           The waves image spans both the Get Involved section and footer.
         ========================================================= */
 
         .cta-footer-wrap {
@@ -847,7 +862,7 @@
             overflow: hidden;
             isolation: isolate;
             color: #fff;
-            background: linear-gradient( 115deg, #03172f 0%, #003767 58%, #0b4c7c 100% );
+            background: linear-gradient(115deg, #03172f 0%, #003767 58%, #0b4c7c 100%);
         }
 
             .cta-footer-wrap::before {
@@ -860,7 +875,7 @@
                 background-repeat: no-repeat;
                 background-position: center center;
                 background-size: cover;
-                opacity: .1;
+                opacity: .14;
                 mix-blend-mode: screen;
             }
 
@@ -869,10 +884,6 @@
                 position: relative;
                 z-index: 1;
             }
-
-        /* =========================================================
-           JOIN / GET INVOLVED
-        ========================================================= */
 
         .join-band {
             position: relative;
@@ -897,7 +908,7 @@
             grid-template-columns: minmax(0, 1fr) auto;
             gap: 1.5rem;
             align-items: center;
-            background: rgba(255,255,255,.18);
+            background: rgba(255,255,255,.16);
             border: 1px solid rgba(255,255,255,.24);
             border-radius: 24px;
             padding: 2rem;
@@ -914,20 +925,6 @@
             overflow: hidden;
             background: rgba(3, 23, 47, .34);
             color: #fff;
-            overflow: hidden;
-        }
-
-            footer::before {
-                content: '';
-                position: absolute;
-                inset: 0;
-                z-index: 0;
-                pointer-events: none;
-            }
-
-        .footer-circuit-left,
-        .footer-circuit-right {
-            display: none !important;
         }
 
         .footer-main {
@@ -985,37 +982,18 @@
                 border-radius: 50%;
                 color: #fff;
                 font-weight: 900;
+                text-decoration: none;
+                transition: background .2s ease, transform .2s ease;
             }
 
-        .subscribe {
-            display: flex;
-            gap: .55rem;
+                .social-row a:hover {
+                    background: rgba(248,189,34,.16);
+                    transform: translateY(-2px);
+                }
+
+        .footer-cta {
             margin-top: .85rem;
         }
-
-            .subscribe input {
-                min-width: 0;
-                flex: 1;
-                border: 0;
-                border-radius: 10px;
-                padding: .78rem .9rem;
-            }
-
-            .subscribe button {
-                border: 0;
-                border-radius: 10px;
-                background: var(--gold);
-                color: var(--navy-dark);
-                font-weight: 900;
-                padding: .78rem 1rem;
-                cursor: pointer;
-            }
-
-                .subscribe button:disabled,
-                .subscribe input:disabled {
-                    opacity: .72;
-                    cursor: not-allowed;
-                }
 
         .footer-bottom {
             position: relative;
@@ -1227,9 +1205,7 @@
             }
 
             .hero-circuit-left,
-            .hero-circuit-right,
-            .footer-circuit-left,
-            .footer-circuit-right {
+            .hero-circuit-right {
                 opacity: .18;
                 width: 150px;
             }
@@ -1253,7 +1229,7 @@
             .icon-badge {
                 width: 54px;
                 height: 54px;
-                font-size: 1.35rem;
+                font-size: .86rem;
             }
 
             .section-heading {
@@ -1279,15 +1255,6 @@
             .footer-brand {
                 align-items: flex-start;
             }
-
-            .subscribe {
-                flex-direction: column;
-            }
-
-                .subscribe button,
-                .subscribe input {
-                    width: 100%;
-                }
         }
 
         @media (max-width: 560px) {
@@ -1395,11 +1362,15 @@
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#home" class="active">Home</a></li>
                     <li><a href="#about">About</a></li>
+                    <li><a href="#why-join">Why Join</a></li>
                     <li><a href="#events">Events</a></li>
                     <li><a href="#projects">Projects</a></li>
-                    <li><a href="#resources">Resources</a></li>
                     <li><a href="#leadership">Officers</a></li>
-                    <li><a href="https://theroost.oit.edu/feeds?type=club&type_id=35573" target="_blank" class="nav-join" rel="noopener">Join</a></li>
+                    <li>
+                        <a href="https://theroost.oit.edu/feeds?type=club&type_id=35573" target="_blank" class="nav-join" rel="noopener">
+                            Join
+                        </a>
+                    </li>
                 </ul>
 
                 <button class="hamburger" id="hamburger" type="button" onclick="toggleNav()" aria-label="Open navigation menu" aria-controls="navLinks" aria-expanded="false">
@@ -1416,14 +1387,24 @@
 
             <div class="hero-inner">
                 <div class="hero-copy-block reveal visible">
-                    <div class="hero-kicker">Student Organization</div>
+                    <div class="hero-kicker">Student-Led AI Community</div>
+
                     <h1>Oregon Tech <span>AI Club</span></h1>
-                    <div class="hero-subtitle">Building Intelligence. Securing the Future.</div>
-                    <p class="hero-copy">We are a community of students passionate about artificial intelligence, machine learning, cybersecurity, and technology for good. Learn. Build. Collaborate. Lead.</p>
+
+                    <div class="hero-subtitle">Learn AI. Build Projects. Prepare for the Future.</div>
+
+                    <p class="hero-copy">
+                        A student-led community exploring artificial intelligence, machine learning, cybersecurity,
+                        and emerging technology through workshops, projects, and collaboration.
+                    </p>
 
                     <div class="hero-ctas">
-                        <a href="https://theroost.oit.edu/feeds?type=club&type_id=35573" target="_blank" class="btn btn-primary" rel="noopener">👥 Join Us</a>
-                        <a href="#about" class="btn btn-outline-light">📖 Learn More</a>
+                        <a href="https://theroost.oit.edu/feeds?type=club&type_id=35573" target="_blank" class="btn btn-primary" rel="noopener">
+                            Join the Club
+                        </a>
+                        <a href="#about" class="btn btn-outline-light">
+                            Learn More
+                        </a>
                     </div>
                 </div>
 
@@ -1434,37 +1415,37 @@
         </header>
 
         <main>
-            <section class="feature-strip" aria-label="Club benefits">
+            <section class="feature-strip" aria-label="Club highlights">
                 <div class="container feature-grid">
                     <article class="feature-card reveal visible">
-                        <div class="icon-badge" aria-hidden="true">🎓</div>
+                        <div class="icon-badge" aria-hidden="true">01</div>
                         <div>
                             <h3>Workshops</h3>
-                            <p>Hands-on sessions to build practical AI skills.</p>
+                            <p>Hands-on sessions designed to build practical technical skills.</p>
                         </div>
                     </article>
 
                     <article class="feature-card reveal visible">
-                        <div class="icon-badge" aria-hidden="true">🧠</div>
+                        <div class="icon-badge" aria-hidden="true">02</div>
                         <div>
                             <h3>Projects</h3>
-                            <p>Work on real-world problems and portfolio pieces.</p>
+                            <p>Collaborate on real-world problems and portfolio-ready work.</p>
                         </div>
                     </article>
 
                     <article class="feature-card reveal visible">
-                        <div class="icon-badge" aria-hidden="true">👥</div>
+                        <div class="icon-badge" aria-hidden="true">03</div>
                         <div>
                             <h3>Community</h3>
-                            <p>Collaborate with peers across majors and skill levels.</p>
+                            <p>Connect with students across majors, backgrounds, and skill levels.</p>
                         </div>
                     </article>
 
                     <article class="feature-card reveal visible">
-                        <div class="icon-badge" aria-hidden="true">📈</div>
+                        <div class="icon-badge" aria-hidden="true">04</div>
                         <div>
                             <h3>Career Growth</h3>
-                            <p>Connect with opportunities in AI, cyber, and IT.</p>
+                            <p>Explore opportunities in AI, cybersecurity, software, and IT.</p>
                         </div>
                     </article>
                 </div>
@@ -1475,8 +1456,17 @@
                     <div class="reveal">
                         <p class="section-eyebrow">Who We Are</p>
                         <h2>A community built for every Oregon Tech student.</h2>
-                        <p style="margin-top:1rem;">The Oregon Tech AI Club brings together students passionate about artificial intelligence, cybersecurity, and information technology — regardless of major or prior experience. We focus on practical learning, ethical technology, career preparation, and student-led projects.</p>
-                        <p style="margin-top:.8rem;">Membership is free and open to all enrolled Oregon Tech students. Join through The Roost or stop by a meeting to get connected.</p>
+
+                        <p style="margin-top:1rem;">
+                            The Oregon Tech AI Club brings together students interested in artificial intelligence,
+                            cybersecurity, software, data, and emerging technology. Whether you are new to AI or already
+                            building technical projects, the club provides a place to learn, collaborate, and grow.
+                        </p>
+
+                        <p style="margin-top:.8rem;">
+                            Membership is free and open to all enrolled Oregon Tech students. Join through The Roost
+                            or attend a meeting to get connected.
+                        </p>
                     </div>
 
                     <div class="stats-grid reveal">
@@ -1484,18 +1474,71 @@
                             <strong>Free</strong>
                             <span>No membership dues required</span>
                         </div>
+
                         <div class="stat">
                             <strong>All</strong>
                             <span>Majors and skill levels welcome</span>
                         </div>
+
                         <div class="stat">
-                            <strong>2×</strong>
-                            <span>General meetings per month</span>
+                            <strong>Hands-on</strong>
+                            <span>Workshops, demos, and projects</span>
                         </div>
+
                         <div class="stat">
                             <strong>OIT</strong>
                             <span>Recognized student organization</span>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="why-join" class="why-section">
+                <div class="container">
+                    <div class="section-heading reveal">
+                        <div>
+                            <p class="section-eyebrow">Why Join</p>
+                            <h2>Build skills beyond the classroom.</h2>
+                            <p>
+                                The AI Club gives Oregon Tech students a place to explore emerging technology,
+                                gain hands-on experience, and connect with peers who are interested in AI,
+                                cybersecurity, software, data, and innovation.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="feature-grid">
+                        <article class="feature-card reveal">
+                            <div class="icon-badge" aria-hidden="true">01</div>
+                            <div>
+                                <h3>Learn by Doing</h3>
+                                <p>Participate in workshops, demos, and guided technical sessions.</p>
+                            </div>
+                        </article>
+
+                        <article class="feature-card reveal">
+                            <div class="icon-badge" aria-hidden="true">02</div>
+                            <div>
+                                <h3>Build a Portfolio</h3>
+                                <p>Work on projects you can showcase in interviews, resumes, and GitHub.</p>
+                            </div>
+                        </article>
+
+                        <article class="feature-card reveal">
+                            <div class="icon-badge" aria-hidden="true">03</div>
+                            <div>
+                                <h3>Grow Your Network</h3>
+                                <p>Connect with students, faculty, alumni, and industry professionals.</p>
+                            </div>
+                        </article>
+
+                        <article class="feature-card reveal">
+                            <div class="icon-badge" aria-hidden="true">04</div>
+                            <div>
+                                <h3>Explore Responsible AI</h3>
+                                <p>Discuss ethics, cybersecurity, privacy, and the real-world impact of technology.</p>
+                            </div>
+                        </article>
                     </div>
                 </div>
             </section>
@@ -1505,16 +1548,21 @@
                     <div class="section-heading reveal">
                         <div>
                             <p class="section-eyebrow">Explore the Club</p>
-                            <h2>Events, projects, and leadership</h2>
-                            <p>Use these homepage sections as quick previews. Link each card to a full page when you expand the site.</p>
+                            <h2>Get involved with the AI community at Oregon Tech.</h2>
+                            <p>
+                                Explore upcoming workshops, student-led projects, and the officers helping guide
+                                the club this year.
+                            </p>
                         </div>
                     </div>
 
                     <div class="homepage-grid">
                         <article class="panel reveal">
                             <div class="panel-header">
-                                <h3>📅 Upcoming Events</h3>
-                                <a href="#events">View All →</a>
+                                <h3>Upcoming Events</h3>
+                                <a href="https://theroost.oit.edu/feeds?type=club&type_id=35573" target="_blank" rel="noopener">
+                                    View on The Roost →
+                                </a>
                             </div>
 
                             <div class="panel-body event-list">
@@ -1535,8 +1583,8 @@
                                         <span class="day">22</span>
                                     </div>
                                     <div>
-                                        <h4>Applied ML in Industry</h4>
-                                        <p>Guest speaker discussion on model deployment.</p>
+                                        <h4>Applied Machine Learning in Industry</h4>
+                                        <p>Guest speaker discussion on model development, deployment, and real-world use cases.</p>
                                     </div>
                                 </div>
 
@@ -1546,8 +1594,8 @@
                                         <span class="day">07</span>
                                     </div>
                                     <div>
-                                        <h4>Project Showcase</h4>
-                                        <p>Members present semester projects to the OIT community.</p>
+                                        <h4>Student Project Showcase</h4>
+                                        <p>Members present semester projects to students, faculty, and campus partners.</p>
                                     </div>
                                 </div>
                             </div>
@@ -1555,7 +1603,7 @@
 
                         <article class="panel reveal" id="projects">
                             <div class="panel-header">
-                                <h3>💻 What We’re Building</h3>
+                                <h3>What We’re Building</h3>
                                 <a href="#projects">View Projects →</a>
                             </div>
 
@@ -1564,7 +1612,7 @@
                                     <div class="project-img" style="--project-img:url('Images/project-neural-network.jpg')"></div>
                                     <div class="project-copy">
                                         <h4>Wildfire Prediction Model</h4>
-                                        <p>ML model to predict wildfire risk using weather and terrain data.</p>
+                                        <p>Machine learning model exploring wildfire risk using weather and terrain data.</p>
                                         <span class="tag">Python · ML</span>
                                     </div>
                                 </div>
@@ -1573,7 +1621,7 @@
                                     <div class="project-img" style="--project-img:url('Images/project-study-buddy.jpg')"></div>
                                     <div class="project-copy">
                                         <h4>Campus Study Buddy</h4>
-                                        <p>AI chatbot to help Oregon Tech students find resources.</p>
+                                        <p>AI assistant concept designed to help students find Oregon Tech resources.</p>
                                         <span class="tag">NLP · RAG</span>
                                     </div>
                                 </div>
@@ -1582,7 +1630,7 @@
                                     <div class="project-img" style="--project-img:url('Images/project-drone-vision.jpg')"></div>
                                     <div class="project-copy">
                                         <h4>Autonomous Drone Vision</h4>
-                                        <p>Computer vision system for object detection and mapping.</p>
+                                        <p>Computer vision project focused on object detection and mapping concepts.</p>
                                         <span class="tag">Vision · YOLO</span>
                                     </div>
                                 </div>
@@ -1591,8 +1639,8 @@
 
                         <article class="panel reveal" id="leadership">
                             <div class="panel-header">
-                                <h3>👥 Meet Our Officers</h3>
-                                <a href="#leadership">View All →</a>
+                                <h3>Meet Our Officers</h3>
+                                <a href="mailto:aiclub@oit.edu">Contact Us →</a>
                             </div>
 
                             <div class="panel-body leaders-list">
@@ -1602,7 +1650,7 @@
                                     </div>
                                     <div>
                                         <h4>Uriel Aguilar Torres</h4>
-                                        <p>President</p>
+                                        <p>President · Strategy, partnerships, and member engagement</p>
                                     </div>
                                 </div>
 
@@ -1612,7 +1660,7 @@
                                     </div>
                                     <div>
                                         <h4>Cody Gamble</h4>
-                                        <p>Vice President</p>
+                                        <p>Vice President · Officer coordination and club operations</p>
                                     </div>
                                 </div>
 
@@ -1622,7 +1670,7 @@
                                     </div>
                                     <div>
                                         <h4>Jackson Wiencken</h4>
-                                        <p>Secretary</p>
+                                        <p>Secretary · Meeting notes and club communications</p>
                                     </div>
                                 </div>
 
@@ -1632,7 +1680,7 @@
                                     </div>
                                     <div>
                                         <h4>Drake Macias</h4>
-                                        <p>Treasurer</p>
+                                        <p>Treasurer · Budget tracking and funding support</p>
                                     </div>
                                 </div>
                             </div>
@@ -1640,7 +1688,6 @@
                     </div>
                 </div>
             </section>
-
         </main>
 
         <div class="cta-footer-wrap">
@@ -1648,11 +1695,16 @@
                 <div class="container join-box reveal">
                     <div>
                         <p class="section-eyebrow">Get Involved</p>
-                        <h2>Ready to join the Oregon Tech AI Club?</h2>
-                        <p style="margin-top:.85rem;">Join us on The Roost to receive announcements, event updates, and meeting details. No experience required — just curiosity.</p>
+                        <h2>Ready to start building with us?</h2>
+                        <p style="margin-top:.85rem;">
+                            Join the Oregon Tech AI Club on The Roost to receive official announcements,
+                            meeting details, and opportunities to participate in workshops and projects.
+                        </p>
                     </div>
 
-                    <a href="https://theroost.oit.edu/feeds?type=club&type_id=35573" target="_blank" rel="noopener" class="btn btn-primary">Join on The Roost →</a>
+                    <a href="https://theroost.oit.edu/feeds?type=club&type_id=35573" target="_blank" rel="noopener" class="btn btn-primary">
+                        Join on The Roost →
+                    </a>
                 </div>
             </section>
 
@@ -1662,20 +1714,24 @@
                         <img src="AI_Club_Logo.png" alt="Oregon Tech AI Club logo" />
                         <div>
                             <h3>Oregon Tech AI Club</h3>
-                            <p>Building Intelligence.<br />Securing the Future.</p>
+                            <p>
+                                A student organization focused on artificial intelligence, machine learning,
+                                cybersecurity, and emerging technology.
+                            </p>
                         </div>
                     </div>
 
                     <div>
                         <h3>Contact Us</h3>
                         <p><a href="mailto:aiclub@oit.edu">aiclub@oit.edu</a></p>
-                        <p>Oregon Tech, Klamath Falls, OR 97601</p>
+                        <p>Oregon Tech<br />Klamath Falls, OR 97601</p>
                         <p><a href="https://ai.oit.edu">ai.oit.edu</a></p>
                     </div>
 
                     <div>
-                        <h3>Follow Us</h3>
-                        <p>Replace these with your official club links.</p>
+                        <h3>Connect</h3>
+                        <p>Follow club updates, project highlights, and event reminders.</p>
+
                         <div class="social-row">
                             <a href="#" aria-label="GitHub">GH</a>
                             <a href="#" aria-label="LinkedIn">in</a>
@@ -1686,11 +1742,16 @@
 
                     <div>
                         <h3>Stay in the Loop</h3>
-                        <p>Join our mailing list for events, workshops, and project updates.</p>
-                        <form class="subscribe" onsubmit="handleSubscribe(event)">
-                            <input type="email" placeholder="Your email address" aria-label="Your email address" required />
-                            <button type="submit">Subscribe</button>
-                        </form>
+                        <p>
+                            The Roost is the best place to receive official announcements,
+                            event updates, and meeting details.
+                        </p>
+
+                        <div class="footer-cta">
+                            <a href="https://theroost.oit.edu/feeds?type=club&type_id=35573" target="_blank" rel="noopener" class="btn btn-primary">
+                                Join on The Roost
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -1757,17 +1818,6 @@
             document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
         } else {
             document.querySelectorAll('.reveal').forEach(element => element.classList.add('visible'));
-        }
-
-        function handleSubscribe(event) {
-            event.preventDefault();
-
-            const button = event.currentTarget.querySelector('button');
-            const input = event.currentTarget.querySelector('input');
-
-            button.textContent = 'Subscribed!';
-            button.disabled = true;
-            input.disabled = true;
         }
     </script>
 </body>
