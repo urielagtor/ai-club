@@ -2242,10 +2242,16 @@
             }
 
             .calendar-section::before {
+                inset: auto;
+                top: 0;
+                bottom: 0;
+                left: 50%;
+                width: min(var(--max), calc(100% - var(--container-padding)));
+                transform: translateX(-50%);
                 background-image: url("Images/elements/waves.png");
                 background-repeat: no-repeat;
                 background-position: center top;
-                background-size: cover;
+                background-size: 100% auto;
                 opacity: .7;
                 mix-blend-mode: multiply;
             }
@@ -2389,9 +2395,10 @@
 
         @media (max-width: 760px) {
             .calendar-section::before {
+                width: min(100% - 1rem, var(--max));
                 opacity: .20;
                 background-position: center top;
-                background-size: cover;
+                background-size: 100% auto;
             }
         }
     </style>
