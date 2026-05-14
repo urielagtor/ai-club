@@ -562,33 +562,6 @@
             isolation: isolate;
         }
 
-            .officers-section::before,
-            .officers-section::after {
-                content: '';
-                position: absolute;
-                pointer-events: none;
-                z-index: 0;
-            }
-
-            .officers-section::before {
-                inset: 0;
-                background-image: url("Images/elements/waves.png");
-                background-repeat: no-repeat;
-                background-position: center top;
-                background-size: cover;
-                opacity: .7;
-                mix-blend-mode: multiply;
-            }
-
-            .officers-section::after {
-                width: 620px;
-                height: 620px;
-                right: -260px;
-                top: -240px;
-                border-radius: 50%;
-                filter: blur(4px);
-            }
-
             .officers-section .container {
                 position: relative;
                 z-index: 1;
@@ -1791,12 +1764,6 @@
                 padding-bottom: 3rem;
             }
 
-                .officers-section::before {
-                    opacity: .20;
-                    background-position: center top;
-                    background-size: cover;
-                }
-
             .officers-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
@@ -2259,17 +2226,31 @@
         .calendar-section {
             position: relative;
             overflow: hidden;
+            isolation: isolate;
             background: var(--off-white);
             border-top: 1px solid rgba(0,55,103,.10);
             border-bottom: 1px solid rgba(0,55,103,.10);
         }
 
-            .calendar-section::before {
+            .calendar-section::before,
+            .calendar-section::after {
                 content: '';
                 position: absolute;
                 inset: 0;
-                z-index: 0;
                 pointer-events: none;
+                z-index: 0;
+            }
+
+            .calendar-section::before {
+                background-image: url("Images/elements/waves.png");
+                background-repeat: no-repeat;
+                background-position: center top;
+                background-size: cover;
+                opacity: .7;
+                mix-blend-mode: multiply;
+            }
+
+            .calendar-section::after {
                 background-image: radial-gradient(circle at 14% 18%, rgba(248,189,34,.12), transparent 28%), radial-gradient(circle at 86% 12%, rgba(0,55,103,.08), transparent 32%);
             }
 
@@ -2402,6 +2383,15 @@
             .officer-program {
                 font-size: .72rem;
                 line-height: 1.35;
+            }
+        }
+    
+
+        @media (max-width: 760px) {
+            .calendar-section::before {
+                opacity: .20;
+                background-position: center top;
+                background-size: cover;
             }
         }
     </style>
