@@ -2224,57 +2224,121 @@
 
 
         .calendar-section {
-    position: relative;
-    overflow: hidden;
-    isolation: isolate;
-    background: var(--off-white);
-    border-top: 1px solid rgba(0,55,103,.10);
-    border-bottom: 1px solid rgba(0,55,103,.10);
-}
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+            background: var(--off-white);
+            border-top: 1px solid rgba(0,55,103,.10);
+            border-bottom: 1px solid rgba(0,55,103,.10);
+            padding-top: 5.25rem;
+            padding-bottom: 5.25rem;
+        }
 
-.calendar-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    width: min(var(--max), calc(100% - var(--container-padding)));
-    transform: translateX(-50%);
-    pointer-events: none;
-    z-index: 0;
+            /* Edge-to-edge waves clipped inside the calendar section */
+            .calendar-section::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                pointer-events: none;
+                z-index: 0;
+                background-image: url("Images/elements/waves.png");
+                background-repeat: no-repeat;
+                background-position: center top;
+                background-size: 100% auto;
+                opacity: .16;
+            }
 
-    background-image: url("Images/elements/waves.png");
-    background-repeat: no-repeat;
-    background-position: center top;
-    background-size: contain;
-    opacity: .25;
-}
+            .calendar-section::after {
+                content: '';
+                position: absolute;
+                inset: 0;
+                pointer-events: none;
+                z-index: 0;
+                background-image:
+                    radial-gradient(circle at 14% 18%, rgba(248,189,34,.12), transparent 28%),
+                    radial-gradient(circle at 86% 12%, rgba(0,55,103,.08), transparent 32%);
+            }
 
-.calendar-section::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    background-image:
-        radial-gradient(circle at 14% 18%, rgba(248,189,34,.12), transparent 28%),
-        radial-gradient(circle at 86% 12%, rgba(0,55,103,.08), transparent 32%);
-}
+            .calendar-section .container {
+                position: relative;
+                z-index: 1;
+            }
 
-.calendar-section .container {
-    position: relative;
-    z-index: 1;
-}
+            .calendar-section .section-heading {
+                align-items: center;
+            }
 
-@media (max-width: 760px) {
-    .calendar-section::before {
-        width: min(100% - 1rem, var(--max));
-        opacity: .18;
-        background-position: center top;
-        background-size: contain;
-    }
-}
+        .calendar-shell {
+            width: 100%;
+            overflow: hidden;
+            background: #ffffff;
+            border: 1px solid rgba(0,55,103,.12);
+            border-radius: 24px;
+            box-shadow: var(--shadow-md);
+        }
 
+        .calendar-frame-wrap {
+            position: relative;
+            width: 100%;
+            height: 760px;
+            min-height: 760px;
+            background: #ffffff;
+        }
+
+        .calendar-frame-wrap iframe {
+            display: block;
+            width: 100%;
+            height: 760px;
+            min-height: 760px;
+            border: 0;
+            background: #ffffff;
+        }
+
+        .calendar-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .85rem;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .calendar-note {
+            margin-top: .8rem;
+            font-size: .88rem;
+        }
+
+        @media (max-width: 760px) {
+            .calendar-section {
+                padding-top: 3.5rem;
+                padding-bottom: 3.5rem;
+            }
+
+            .calendar-section::before {
+                background-size: auto 100%;
+                background-position: center top;
+                opacity: .14;
+            }
+
+            .calendar-shell {
+                border-radius: 16px;
+            }
+
+            .calendar-frame-wrap,
+            .calendar-frame-wrap iframe {
+                height: 620px;
+                min-height: 620px;
+            }
+
+            .calendar-actions {
+                justify-content: stretch;
+            }
+
+            .calendar-actions .btn {
+                width: 100%;
+                min-height: 42px;
+                font-size: .78rem;
+            }
+        }
 
         /* Officer roster updates: white cards with title, name, and program/year order */
         .officers-roster {
@@ -2365,16 +2429,7 @@
                 line-height: 1.35;
             }
         }
-    
 
-        @media (max-width: 760px) {
-            .calendar-section::before {
-                width: min(100% - 1rem, var(--max));
-                opacity: .20;
-                background-position: center top;
-                background-size: 100% auto;
-            }
-        }
     </style>
 </head>
 
